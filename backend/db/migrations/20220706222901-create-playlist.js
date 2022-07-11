@@ -9,13 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
           key: 'id'
-        }
+        },
+        onDelete: 'cascade'
       },
       songId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Songs',
@@ -23,6 +26,7 @@ module.exports = {
         }
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       previewImage: {

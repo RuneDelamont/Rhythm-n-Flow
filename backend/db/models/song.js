@@ -18,12 +18,14 @@ module.exports = (sequelize, DataTypes) => {
   }
   Song.init({
     userId:{
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     albumId:{
       type: DataTypes.INTEGER
     },
     title: {
+      allowNull: false,
       type: DataTypes.STRING
     },
     description:{

@@ -9,14 +9,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       userId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
           key: 'id'
         }
+      },
+      description: {
+        type: Sequelize.STRING
       },
       previewImage: {
         type: Sequelize.STRING
