@@ -1,12 +1,22 @@
 const express = require('express');
-// const { check } = require('express-validator');
+const { check } = require('express-validator');
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
-// const { handleValidationErrors } = require('../../utils/validation');
+const { handleValidationErrors } = require('../../utils/validation');
 const { User } = require('../../db/models');
 
 const router = express.Router();
 
-
+// validate logins
+const validateLogin = [
+  check('credential')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Please provide a valid email or username.'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a password.'),
+  handleValidationErrors
+];
 
 // Restore session user
 router.get('/', restoreUser, (req, res) => {
@@ -20,7 +30,7 @@ router.get('/', restoreUser, (req, res) => {
   );
 
 // Login
-router.post('/', async(req, res, next) => {
+router.post('/', validateLogin, async(req, res, next) => {
     const { credential, password } = req.body;
 
     const user = await User.login({
