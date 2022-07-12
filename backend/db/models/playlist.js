@@ -19,10 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.INTEGER
     },
-    songId:{
-      allowNull: false,
-      type: DataTypes.INTEGER
-    },
     name: {
       allowNull: false,
       type: DataTypes.STRING
