@@ -20,6 +20,10 @@ const handleValidationErrors = (req, _res, next) => {
 };
 
 // validate logins
+//   "errors": {
+//   "email": "Email is required",
+//   "password": "Password is required"
+// }
 const validateLogin = [
   check('credential')
     .exists({ checkFalsy: true })
