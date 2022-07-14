@@ -9,41 +9,42 @@ const router = express.Router();
 
 // Sign up
 router.post('/', validateSignup, async (req, res, next) => {
-      const { email, password, username } = req.body;
 
-      const checkUser = await User.scope('currentUser').findOne({
-        where: {
-            [Op.or] : [
-              { email },
-              { username }
-            ]
-        }
+      const { firstName, lastName, email, password, username, previewImage } = req.body;
+
+      const checkEmail = await User.scope('currentUser').findOne({
+        where: { email }
       });
 
-      if(checkUser){
-        const err = new Error();
-        err.status = 403;
-        const errors = {};
-        err.errors = errors;
+      const checkUsername = await User.scope('currentUser').findOne({
+        where: { username }
+      });
 
-        if(checkUser.username === username ){
-          err.message = "User with that username already exists";
-          errors.username = "User with that username already exists";
-        }
+      const err = new Error();
+      err.status = 403;
+      const errors = {};
+      err.errors = errors;
 
-        if(checkUser.email === email){
-          console.log(checkUser.email);
-          err.message = "User with that email already exists";
-          errors.email = "User with that email already exists";
-        }
+      if(checkEmail) {
+        err.message = "User with that email already exists";
+        errors.email = "User with that email already exists";
         next(err);
       }
-      const user = await User.signup({ email, username, password });
 
-      await setTokenCookie(res, user);
+      if(checkUsername ){
+        err.message = "User with that username already exists";
+        errors.username = "User with that username already exists";
+        next(err);
+      }
+
+      const user = await User.signup({ firstName, lastName, email, username, password, previewImage });
+      const token = setTokenCookie(res, user);
+
+      const resUser = await user.toSafeObject();
 
       res.json({
-        user
+        ...resUser,
+        token
       });
     }
   );

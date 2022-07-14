@@ -10,10 +10,10 @@ const handleValidationErrors = (req, _res, next) => {
       .array()
       .map((error) => `${error.msg}`);
 
-    const err = Error('Bad request.');
+    const err = Error('Validation Error');
     err.errors = errors;
     err.status = 400;
-    err.title = 'Bad request.';
+    err.title = 'Validation Error';
     next(err);
   }
   next();
@@ -28,27 +28,38 @@ const validateLogin = [
   check('credential')
     .exists({ checkFalsy: true })
     .notEmpty()
-    .withMessage('Please provide a valid email or username.'),
+    .withMessage('Email is required'),
   check('password')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a password.'),
+    .withMessage('Password is required'),
   handleValidationErrors
 ];
+
+// "email": "Invalid email",
+// "username": "Username is required",
+// "firstName": "First Name is required",
+// "lastName": "Last Name is required"
 
 //validate signup
 const validateSignup = [
   check('email')
     .exists({ checkFalsy: true })
     .isEmail()
-    .withMessage('Please provide a valid email.'),
+    .withMessage("Invalid email"),
   check('username')
     .exists({ checkFalsy: true })
     .isLength({ min: 4 })
-    .withMessage('Please provide a username with at least 4 characters.'),
+    .withMessage("Username is required"),
   check('username')
     .not()
     .isEmail()
     .withMessage('Username cannot be an email.'),
+  check('firstName')
+    .exists({ checkFalsy: true })
+    .withMessage("First Name is required"),
+  check('lastName')
+    .exists({ checkFalsy: true })
+    .withMessage("Last Name is required"),
   check('password')
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
@@ -56,8 +67,19 @@ const validateSignup = [
   handleValidationErrors
 ];
 
+const validateSong = [
+  check('title')
+    .exists({ checkFalsy: true })
+    .withMessage('Song title is required'),
+  check('url')
+    .exists({ checkFalsy: true })
+    .withMessage('Audio is required'),
+  handleValidationErrors
+];
+
 module.exports = {
   handleValidationErrors,
   validateLogin,
-  validateSignup
+  validateSignup,
+  validateSong
 };

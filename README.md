@@ -50,7 +50,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/me
+  * URL: /me
   * Body: none
 
 * Successful Response
@@ -268,7 +268,7 @@ Returns all the songs created by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /songs/me
+  * URL: /me/songs
   * Body: none
 
 * Successful Response

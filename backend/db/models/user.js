@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     toSafeObject() {
-      const { id, username, email } = this;
-      return { id, username, email };
+      const { id, firstName, lastName, email, username } = this;
+      return { id, firstName, lastName, email, username };
     };
 
     validatePassword(password) {
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       const user = await User.scope('loginUser').findOne({
         where: {
           [Op.or]: {
-            username: credential,
+            // username: credential,
             email: credential
           }
         }
@@ -46,9 +46,11 @@ module.exports = (sequelize, DataTypes) => {
       }
     };
 
-    static async signup({ username, email, password }) {
+    static async signup({ firstName, lastName, username, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
+        firstName,
+        lastName,
         username,
         email,
         hashedPassword
@@ -58,6 +60,23 @@ module.exports = (sequelize, DataTypes) => {
 
   }
   User.init({
+    firstName: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    lastName: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    email:{
+      allowNull: false,
+      type: DataTypes.STRING,
+      unique: true,
+      validate: {
+        len: [3, 256],
+        isEmail: true
+      }
+    },
     username:{
       allowNull: false,
       type: DataTypes.STRING,
@@ -69,15 +88,6 @@ module.exports = (sequelize, DataTypes) => {
             throw new Error("Cannot be an email.");
           }
         }
-      }
-    },
-    email:{
-      allowNull: false,
-      type: DataTypes.STRING,
-      unique: true,
-      validate: {
-        len: [3, 256],
-        isEmail: true
       }
     },
     hashedPassword:{
@@ -97,10 +107,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     scopes: {
       currentUser: {
-        attributes: { exclude: [ "hashedPassword" ] }
+        attributes: { exclude: [ "hashedPassword", 'createdAt', 'updatedAt'  ] }
       },
       loginUser: {
-        attributes: {}
+        attributes: { }
       }
     }
   });
