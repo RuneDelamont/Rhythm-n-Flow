@@ -1,7 +1,7 @@
 const express = require('express');
 const { check } = require('express-validator');
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
-const { handleValidationErrors, validateSignup, validateSong } = require('../../utils/validation');
+const { handleValidationErrors, forbiddenError, notFoundError, validateQuery, validateSong } = require('../../utils/validation');
 const { User, Song, Album, Comment, PlayList } = require('../../db/models');
 const router = express.Router();
 
@@ -14,9 +14,7 @@ router.post('/:albumId/song', requireAuth, validateSong, async (req, res, next) 
     const album = await Album.findByPk(albumId);
 
     if(!album){
-        const err = new Error(`Album couldn't be found`)
-        err.status = 404;
-        return next(err)
+        return next(notFoundError('Album'));
     }
 
 
@@ -32,10 +30,7 @@ router.post('/:albumId/song', requireAuth, validateSong, async (req, res, next) 
          res.status(201);
          res.json(song);
     }else{
-        const err = new Error('Not Authorized');
-        err.status = 403;
-        err.title = 'Forbidden';
-        return next(err);
+        return next(forbiddenError());
     }
 
 });
@@ -48,9 +43,7 @@ router.put('/:id', requireAuth, validateSong, async(req, res, next) => {
     const song = await Song.findByPk(id);
 
     if(!song){
-        const err = new Error(`Song couldn't be found`);
-        err.status = 404;
-        return next(err);
+        return next(notFoundError('Song'));
     }
 
     if(user.id === song.userId){
@@ -63,13 +56,8 @@ router.put('/:id', requireAuth, validateSong, async(req, res, next) => {
 
         res.json(song);
     }else{
-        const err = new Error('Not Authorized');
-        err.status = 403;
-        err.title = 'Forbidden';
-        return next(err);
+        return next(forbiddenError());
     }
-
-
 });
 
 router.delete('/:id', requireAuth, async(req, res, next) => {
@@ -79,9 +67,7 @@ router.delete('/:id', requireAuth, async(req, res, next) => {
     const song = await Song.findByPk(id);
 
     if(!song){
-        const err = new Error(`Song couldn't be found`);
-        err.status = 404;
-        return next(err);
+        return next(notFoundError('Song'));
     }
 
     if(user.id === song.userId){
@@ -91,10 +77,7 @@ router.delete('/:id', requireAuth, async(req, res, next) => {
             message: "Successfully deleted"
         });
     }else{
-        const err = new Error('Not Authorized');
-        err.status = 403;
-        err.title = 'Forbidden';
-        return next(err);
+        return next(forbiddenError());
     }
 });
 
@@ -105,28 +88,48 @@ router.get('/:id', requireAuth, async (req, res, next) => {
         include: [
             {
                 model: User,
-                as: 'Artist'
+                as: 'Artist',
+                attributes: ['id', 'username', 'previewImage']
             },
             {
-                model: Album
+                model: Album,
+                attributes: ['id', 'title', 'previewImage']
             }
         ]
     });
 
     if(!song){
-        const err = new Error("Song couldn't be found");
-        err.status = 404;
-        return next(err);
+        return next(notFoundError('Song'));
     }
 
     res.json(song);
 });
 
 router.get('/', async (req, res) => {
-    const songs = await Song.findAll();
-    console.log(songs[0]);
+    let { page, size, createdAt, title } = req.query;
+    const pagination = {};
+    const where = {};
+
+    if(page) page = parseInt(page);
+    if(size) size = parseInt(size);
+    if(!page || page < 0) page = 0;
+    if(!size || size < 0) size = 20;
+    if(page > 10) page = 10;
+    if(size > 20) size = 20;
+    pagination.limit = size;
+    pagination.offset = size * (page - 1);
+
+    if(createdAt) where.createdAt = createdAt;
+    if(title) where.title = title;
+
+    const songs = await Song.findAll({
+        where,
+        ...pagination
+    });
     res.json({
-        Songs: songs
+        Songs: songs,
+        page,
+        size
     });
 });
 

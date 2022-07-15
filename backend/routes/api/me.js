@@ -2,7 +2,7 @@ const express = require('express');
 const { check } = require('express-validator');
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { handleValidationErrors, validateSignup } = require('../../utils/validation');
-const { User, Song, Album, Comment, PlayList } = require('../../db/models');
+const { User, Song, Album, Comment, Playlist } = require('../../db/models');
 const router = express.Router();
 
 router.get('/songs', requireAuth, restoreUser, async (req, res) => {
@@ -29,6 +29,18 @@ router.get('/albums', requireAuth, restoreUser, async (req, res) => {
     });
 
     res.json(albums);
+});
+
+router.get('/playlists', requireAuth, async(req, res) => {
+    const { user: { id } } = req
+
+    const playlists = await Playlist.findAll({
+        where: {
+            userId: id
+        }
+    });
+
+    res.json(playlists);
 })
 
 router.get('/', requireAuth, restoreUser, async(req, res) => {
