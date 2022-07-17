@@ -10,7 +10,7 @@ const router = express.Router();
 // Sign up
 router.post('/', validateSignup, async (req, res, next) => {
 
-      const { firstName, lastName, email, password, username, previewImage } = req.body;
+      const { firstName, lastName, email, password, username } = req.body;
 
       const checkEmail = await User.scope('currentUser').findOne({
         where: { email }
@@ -20,24 +20,24 @@ router.post('/', validateSignup, async (req, res, next) => {
         where: { username }
       });
 
-      const err = new Error();
+      const err = new Error("User already exists");
       err.status = 403;
       const errors = {};
       err.errors = errors;
 
       if(checkEmail) {
-        err.message = "User with that email already exists";
+        // err.message = "User already exists";
         errors.email = "User with that email already exists";
         next(err);
       }
 
       if(checkUsername ){
-        err.message = "User with that username already exists";
+        // err.message = "User already exists";
         errors.username = "User with that username already exists";
         next(err);
       }
 
-      const user = await User.signup({ firstName, lastName, email, username, password, previewImage });
+      const user = await User.signup({ firstName, lastName, email, username, password });
       const token = setTokenCookie(res, user);
 
       const resUser = await user.toSafeObject();

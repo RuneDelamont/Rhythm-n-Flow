@@ -79,8 +79,7 @@ router.get('/:id', async(req, res, next) => {
         ]
     });
 
-    if(!artist['id'] || !artist){
-        console.log(artist);
+    if(!artist['id']){
         return next(notFoundError('Artist'));
     }
 

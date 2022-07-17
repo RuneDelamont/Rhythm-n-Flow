@@ -1,12 +1,13 @@
 const express = require('express');
 const { check } = require('express-validator');
+const { Op } = require('sequelize');
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { handleValidationErrors, forbiddenError, notFoundError, validateQuery, validateSong } = require('../../utils/validation');
 const { User, Song, Album, Comment, PlayList } = require('../../db/models');
 const router = express.Router();
 
 
-router.post('/:albumId/song', requireAuth, validateSong, async (req, res, next) => {
+router.post('/:albumId', requireAuth, validateSong, async (req, res, next) => {
     const { albumId } = req.params;
     const { user } = req;
     let { title, description, url, imageUrl, previewImage } = req.body;
@@ -105,27 +106,46 @@ router.get('/:id', requireAuth, async (req, res, next) => {
     res.json(song);
 });
 
-router.get('/', async (req, res) => {
+router.get('/', validateQuery, async (req, res) => {
     let { page, size, createdAt, title } = req.query;
     const pagination = {};
     const where = {};
 
+    // convert page and size into limit and offset specs respectively
     if(page) page = parseInt(page);
     if(size) size = parseInt(size);
+
+    // defaults
     if(!page || page < 0) page = 0;
     if(!size || size < 0) size = 20;
     if(page > 10) page = 10;
     if(size > 20) size = 20;
+
+    // pagination keys
     pagination.limit = size;
     pagination.offset = size * (page - 1);
 
-    if(createdAt) where.createdAt = createdAt;
-    if(title) where.title = title;
+    if(createdAt) {
+        newCreatedAt = new Date(createdAt);
+        const year = newCreatedAt.getFullYear();
+        const month = newCreatedAt.getMonth();
+        const dayBefore = newCreatedAt.getDate();
+        const day = (newCreatedAt.getDate() + 1);
+        const dayAfter = (newCreatedAt.getDate() + 2);
+
+        const before = new Date(year, month, dayBefore);
+        const after = new Date(year, month, dayAfter);
+
+        where.createdAt = { [Op.between] : [before, after] }
+    };
+
+    if(title) where.title = { [Op.like] : `%${title}%` };
 
     const songs = await Song.findAll({
         where,
         ...pagination
     });
+
     res.json({
         Songs: songs,
         page,

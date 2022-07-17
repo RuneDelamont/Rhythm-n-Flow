@@ -67,7 +67,7 @@ router.delete('/:id', requireAuth, async(req, res, next) => {
     }
 })
 
-router.get('/:songId/', async(req, res, next) => {
+router.get('/:songId', async(req, res, next) => {
     const { songId } = req.params;
     const song = await Song.findByPk(songId);
 

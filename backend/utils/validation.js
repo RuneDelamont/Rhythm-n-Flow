@@ -23,7 +23,7 @@ const handleValidationErrors = (req, _res, next) => {
 const validateLogin = [
   check('credential')
     .exists({ checkFalsy: true })
-    .notEmpty()
+    // .notEmpty()
     .withMessage('Email is required'),
   check('password')
     .exists({ checkFalsy: true })
@@ -43,10 +43,10 @@ const validateSignup = [
     .exists({ checkFalsy: true })
     .isLength({ min: 4 })
     .withMessage("Username is required"),
-  check('username')
-    .not()
-    .isEmail()
-    .withMessage('Username cannot be an email.'),
+  // check('username')
+  //   .not()
+  //   .isEmail()
+  //   .withMessage('Username cannot be an email.'),
   check('firstName')
     .exists({ checkFalsy: true })
     .withMessage("First Name is required"),
@@ -95,40 +95,35 @@ const validatePlaylist = [
   handleValidationErrors
 ];
 
-// const validateServer = [
-//   check('form')
-//       .custom(async (value, { req }) => {
-//           if (req.file) {
-//               const fileType = req.file.mimetype;
-
-//               if (!fileType.startsWith('image/') && !fileType.endsWith('gif')) {
-//                   return await Promise.reject('File needs to be an image')
-//               };
-//           };
-//       }),
-//   check('name')
-//       .isLength({ min: 1, max: 100 })
-//       .withMessage('Valid name length: 1-100'),
-//   handleValidationErrors
-// ];
-
-
+// validate query
 const validateQuery = [
   check('size')
-    .exists({ checkFalsy: false })
-    .toInt()
-    .isInt({max: 20, min: 0})
-    .withMessage("Page must be greater than or equal to 0"),
+    .custom( async ( value, { req }) => {
+      if(req.query){
+        const { size } = req.query;
+        if(size){
+          if (size < 0){
+            return await Promise.reject('Size must be greater than or equal to 0')
+          }
+        }
+      }
+    })
+    ,
   check('page')
-    .exists({ checkFalsy: false })
-    .toInt()
-    .isInt({max: 10, min: 0})
-    .withMessage("Size must be greater than or equal to 0"),
-  check('createdAt')
-    .exists({ checkFalsy: false })
-    .toDate()
-    .isDate()
-    .withMessage("CreatedAt is invalid"),
+  .custom( async ( value, { req }) => {
+    if(req.query){
+      const { page } = req.query;
+      if(page){
+        if (page < 0){
+          return await Promise.reject('Page must be greater than or equal to 0')
+        }
+      }
+    }
+  }),
+  // check('createdAt')
+  //   .isDate({ dateOnly: false })
+  //   .optional({ nullable: true })
+  //   .withMessage("CreatedAt is invalid"),
   handleValidationErrors
 ];
 

@@ -6,8 +6,7 @@ const { User, Song, Album, Comment, Playlist, PlaylistSong } = require('../../db
 const { Op } = require("sequelize");
 const router = express.Router();
 
-// todo
-// res.json === null
+
 router.post('/:playlistId/songs/', requireAuth, async(req, res, next) => {
     const { playlistId } = req.params;
     const { user: { id } } = req;

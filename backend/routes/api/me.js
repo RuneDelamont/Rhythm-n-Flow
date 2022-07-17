@@ -5,7 +5,7 @@ const { handleValidationErrors, validateSignup } = require('../../utils/validati
 const { User, Song, Album, Comment, Playlist } = require('../../db/models');
 const router = express.Router();
 
-router.get('/songs', requireAuth, restoreUser, async (req, res) => {
+router.get('/songs', requireAuth, async (req, res) => {
     const { user } = req;
 
     const songs = await Song.findAll({
@@ -19,7 +19,7 @@ router.get('/songs', requireAuth, restoreUser, async (req, res) => {
     });
 });
 
-router.get('/albums', requireAuth, restoreUser, async (req, res) => {
+router.get('/albums', requireAuth, async (req, res) => {
     const { user } = req;
 
     const albums = await Album.findAll({
@@ -28,7 +28,9 @@ router.get('/albums', requireAuth, restoreUser, async (req, res) => {
         }
     });
 
-    res.json(albums);
+    res.json({
+        Albums: albums
+    });
 });
 
 router.get('/playlists', requireAuth, async(req, res) => {
@@ -40,13 +42,16 @@ router.get('/playlists', requireAuth, async(req, res) => {
         }
     });
 
-    res.json(playlists);
+    res.json({
+        Playlists: playlists
+    });
 })
 
-router.get('/', requireAuth, restoreUser, async(req, res) => {
+router.get('/', requireAuth,  async(req, res) => {
     const { user } = req;
+    let safeUser = await user.toSafeObject();
 
-    res.json(user);
+    res.json(safeUser);
 })
 
 
