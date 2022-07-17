@@ -1,8 +1,6 @@
 # Soundcloud
 
-## Database Schema Design
 
-<iframe width="560" height="315" src='https://dbdiagram.io/embed/62bbb69f69be0b672c602969'> </iframe>
 
 ## API Documentation
 
