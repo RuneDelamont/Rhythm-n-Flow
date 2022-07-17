@@ -115,7 +115,7 @@ router.get('/', validateQuery, async (req, res) => {
     if(page) page = parseInt(page);
     if(size) size = parseInt(size);
 
-    // defaults
+    // default pagination vals
     if(!page || page < 0) page = 0;
     if(!size || size < 0) size = 20;
     if(page > 10) page = 10;
@@ -126,9 +126,14 @@ router.get('/', validateQuery, async (req, res) => {
     pagination.offset = size * (page - 1);
 
     if(createdAt) {
+        //convert query string to date
         newCreatedAt = new Date(createdAt);
+
+        // get year and month
         const year = newCreatedAt.getFullYear();
         const month = newCreatedAt.getMonth();
+
+        // get day range
         const dayBefore = newCreatedAt.getDate();
         const day = (newCreatedAt.getDate() + 1);
         const dayAfter = (newCreatedAt.getDate() + 2);
@@ -136,9 +141,17 @@ router.get('/', validateQuery, async (req, res) => {
         const before = new Date(year, month, dayBefore);
         const after = new Date(year, month, dayAfter);
 
+        /*
+        song.findAll({
+            where: {
+                createdAt && (createdAt > before  && createdAt < after)
+            }
+        })
+        */
         where.createdAt = { [Op.between] : [before, after] }
     };
 
+    // title query find anything like
     if(title) where.title = { [Op.like] : `%${title}%` };
 
     const songs = await Song.findAll({

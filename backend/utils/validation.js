@@ -23,7 +23,6 @@ const handleValidationErrors = (req, _res, next) => {
 const validateLogin = [
   check('credential')
     .exists({ checkFalsy: true })
-    // .notEmpty()
     .withMessage('Email is required'),
   check('password')
     .exists({ checkFalsy: true })
@@ -37,16 +36,20 @@ const validateLogin = [
 const validateSignup = [
   check('email')
     .exists({ checkFalsy: true })
-    .isEmail()
     .withMessage("Invalid email"),
+    check('email')
+    .isEmail()
+    .withMessage("Email must be email"),
   check('username')
     .exists({ checkFalsy: true })
-    .isLength({ min: 4 })
     .withMessage("Username is required"),
-  // check('username')
-  //   .not()
-  //   .isEmail()
-  //   .withMessage('Username cannot be an email.'),
+  check('username')
+    .isLength({ min: 4 })
+    .withMessage("Username must have length of 4"),
+  check('username')
+    .not()
+    .isEmail()
+    .withMessage('Username cannot be an email.'),
   check('firstName')
     .exists({ checkFalsy: true })
     .withMessage("First Name is required"),
