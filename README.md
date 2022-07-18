@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-
+![Soundcloud](https://user-images.githubusercontent.com/69321727/179432488-ba7e4028-1917-46a7-8b05-772a71f40063.png)
 
 ## API Documentation
 
