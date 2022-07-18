@@ -123,10 +123,10 @@ const validateQuery = [
       }
     }
   }),
-  // check('createdAt')
-  //   .isDate({ dateOnly: false })
-  //   .optional({ nullable: true })
-  //   .withMessage("CreatedAt is invalid"),
+  check('createdAt')
+    .isDate({ dateOnly: false })
+    .optional({ nullable: true })
+    .withMessage("CreatedAt is invalid"),
   handleValidationErrors
 ];
 
