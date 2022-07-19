@@ -116,7 +116,7 @@ router.get('/', validateQuery, async (req, res) => {
     if(size) size = parseInt(size);
 
     // default pagination vals
-    if(!page || page < 0) page = 0;
+    if(!page || page < 0) page = 1;
     if(!size || size < 0) size = 20;
     if(page > 10) page = 10;
     if(size > 20) size = 20;
