@@ -10,7 +10,7 @@ module.exports = {
       email: 'nf@nf.com',
       username: 'NFMusic',
       hashedPassword: bcrypt.hashSync('nfmusic'),
-      // previewImage: "www.nfImage.com"
+      previewImage: "www.nfImage.com"
     },
     {
       firstName: 'Derek',
@@ -18,7 +18,7 @@ module.exports = {
       email: 'dminor@minorville.com',
       username: 'DerekMinor',
       hashedPassword: bcrypt.hashSync('minorville'),
-      // previewImage: "www.DMImage.com"
+      previewImage: "www.DMImage.com"
     },
     {
       firstName: 'Taz',
@@ -26,7 +26,7 @@ module.exports = {
       email: 'thesiege@siege.com',
       username: 'TheSiege',
       hashedPassword: bcrypt.hashSync('thesiege'),
-      // previewImage: "www.SiegeImage.com"
+      previewImage: "www.SiegeImage.com"
     },
     {
       firstName: 'Zach',
@@ -34,7 +34,7 @@ module.exports = {
       email: 'futuristic@futuristic.com',
       username: 'Futuristic',
       hashedPassword: bcrypt.hashSync('futuristic'),
-      // previewImage: "www.FuturisticImage.com"
+      previewImage: "www.FuturisticImage.com"
     },
     {
       firstName: 'Andy',
@@ -42,7 +42,7 @@ module.exports = {
       email: 'andymineo@mineo.com',
       username: 'AndyMineo',
       hashedPassword: bcrypt.hashSync('amineo'),
-      // previewImage: "www.AMImage.com"
+      previewImage: "www.AMImage.com"
     },
     {
       firstName: 'Vo',
@@ -50,7 +50,7 @@ module.exports = {
       email: 'vowilliams@vo.com',
       username: 'VoWilliams',
       hashedPassword: bcrypt.hashSync('vowilliams'),
-      // previewImage: "www.VoImage.com"
+      previewImage: "www.VoImage.com"
     },
     {
       firstName: 'Demo',
@@ -58,7 +58,7 @@ module.exports = {
       email: 'demo@user.io',
       username: 'Demo-lition',
       hashedPassword: bcrypt.hashSync('password'),
-      // // previewImage: "www.previewImage.com"
+      previewImage: "www.previewImage.com"
     },
     {
       firstName: 'Fake',
@@ -66,7 +66,7 @@ module.exports = {
       email: 'user1@user.io',
       username: 'FakeUser1',
       hashedPassword: bcrypt.hashSync('password2'),
-      // // previewImage: "www.previewImage1.com"
+      previewImage: "www.previewImage1.com"
     },
     {
       firstName: 'Fake',
@@ -74,7 +74,7 @@ module.exports = {
       email: 'user2@user.io',
       username: 'FakeUser2',
       hashedPassword: bcrypt.hashSync('password3'),
-      // previewImage: "www.previewImage2.com"
+      previewImage: "www.previewImage2.com"
     }
     ], {});
   },

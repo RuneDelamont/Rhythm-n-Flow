@@ -74,26 +74,9 @@ router.get('/:id', async(req, res, next) => {
     const artist = await User.findByPk(id, {
         attributes: {
         exclude: [ 'firstName', 'lastName' ],
-        // include: [
-        //     [sequelize.fn('count', sequelize.col("Songs.id")), "totalSongs"],
-        //     [sequelize.fn('count', sequelize.col("Albums.id")), "totalAlbums"],
-        //     'previewImage',
-        // ],
         },
-        // include: [
-        //     {
-        //         model: Song,
-        //         attributes: []
-        //     },
-        //     {
-        //         model: Album,
-        //         attributes: []
-        //     }
-        // ],
-        // group: 'user.id'
     });
 
-    // const { id , username } = artist
 
     if(!artist['id']){
         return next(notFoundError('Artist'));
@@ -103,7 +86,8 @@ router.get('/:id', async(req, res, next) => {
         id: artist.id,
         username: artist.username,
         totalSongs: songs,
-        totalAlbums: albums
+        totalAlbums: albums,
+        previewImage: artist.previewImage
         });
 })
 
