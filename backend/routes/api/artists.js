@@ -58,33 +58,53 @@ router.get('/:userId/playlists', async(req, res, next) => {
 router.get('/:id', async(req, res, next) => {
     const { id } = req.params;
 
+    const songs = await Song.count({
+        where: {
+            userId: id
+        }
+    });
+
+    const albums = await Album.count({
+        where: { userId: id }
+    });
+
+    // const songCount = await songs.count()
+    // const albumCount = await albums.count();
+
     const artist = await User.findByPk(id, {
         attributes: {
         exclude: [ 'firstName', 'lastName' ],
-        include: [
-            [sequelize.fn('count', sequelize.col("Songs.id")), "totalSongs"],
-            [sequelize.fn('count', sequelize.col("Albums.id")), "totalAlbums"],
-            'previewImage'
-        ],
+        // include: [
+        //     [sequelize.fn('count', sequelize.col("Songs.id")), "totalSongs"],
+        //     [sequelize.fn('count', sequelize.col("Albums.id")), "totalAlbums"],
+        //     'previewImage',
+        // ],
         },
-        include: [
-            {
-                model: Song,
-                attributes: []
-            },
-            {
-                model: Album,
-                attributes: []
-            }
-        ],
-        group: 'user.id'
+        // include: [
+        //     {
+        //         model: Song,
+        //         attributes: []
+        //     },
+        //     {
+        //         model: Album,
+        //         attributes: []
+        //     }
+        // ],
+        // group: 'user.id'
     });
+
+    // const { id , username } = artist
 
     if(!artist['id']){
         return next(notFoundError('Artist'));
     }
 
-    res.json(artist);
+    res.json({
+        id: artist.id,
+        username: artist.username,
+        totalSongs: songs,
+        totalAlbums: albums
+        });
 })
 
 module.exports = router;
