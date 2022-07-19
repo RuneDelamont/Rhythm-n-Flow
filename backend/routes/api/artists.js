@@ -76,7 +76,8 @@ router.get('/:id', async(req, res, next) => {
                 model: Album,
                 attributes: []
             }
-        ]
+        ],
+        group: 'user.id'
     });
 
     if(!artist['id']){
