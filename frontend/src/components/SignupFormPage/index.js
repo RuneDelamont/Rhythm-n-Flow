@@ -22,13 +22,13 @@ function SignupFormPage() {
     const handleSubmit = e => {
         e.preventDefault();
         if(password === confirmPassword){
-            console.log({
-                firstName,
-                lastName,
-                username,
-                email,
-                password
-            })
+            // console.log({
+            //     firstName,
+            //     lastName,
+            //     username,
+            //     email,
+            //     password
+            // })
             setErrors([]);
             return dispatch(sessionActions.signup({ firstName, lastName, email, password, username}))
                 .catch(async (res) => {

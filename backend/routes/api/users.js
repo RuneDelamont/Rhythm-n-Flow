@@ -4,13 +4,16 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { handleValidationErrors, validateSignup } = require('../../utils/validation');
 const { User } = require('../../db/models');
 const { Op } = require('sequelize');
+const { singleMulterUpload, singlePublicFileUpload } = require('../../awsS3');
 const router = express.Router();
 
 
 // Sign up
+// singleMulterUpload('image'),
 router.post('/', validateSignup, async (req, res, next) => {
 
       const { firstName, lastName, email, password, username } = req.body;
+      // const profileImageUrl = await singlePublicFileUpload(req.file);
 
       const checkEmail = await User.scope('currentUser').findOne({
         where: { email }
