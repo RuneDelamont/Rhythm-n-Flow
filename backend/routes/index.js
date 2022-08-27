@@ -5,8 +5,6 @@ const apiRouter = require('./api');
 
 router.use('/', apiRouter);
 
-//per auth me: Frontend
-// router.use('/api', apiRouter);
 
 // Static routes
 // Serve React build files in production
