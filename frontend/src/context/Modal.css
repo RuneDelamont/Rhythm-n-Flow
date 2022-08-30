@@ -22,4 +22,12 @@
   #modal-content {
     position: absolute;
     background-color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    column-count: 1;
+    min-height: 580px;
+    padding: 3rem;
+    width: 60%
   }
