@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
+import DemoUser from '../DemoUser/DemoUser';
 import './LoginForm.css';
 
 function LoginForm() {
@@ -20,11 +21,12 @@ function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1 className='log-in-header'>Log In</h1>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <h1 className='log-in-header'>Log In</h1>
+        <ul>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
         <input
           className='log-in-text-input'
           placeholder='Username or Email'
@@ -41,8 +43,10 @@ function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      <button className='button-log-in-modal' type="submit">Log In</button>
-    </form>
+        <button className='button-log-in-modal' type="submit">Log In</button>
+      </form>
+      <DemoUser />
+    </div>
   );
 }
 
