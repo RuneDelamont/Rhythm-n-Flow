@@ -3,35 +3,55 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import HomeButton from './HomeButton';
 import './Navigation.css';
+import cloudlogo from '../../images/cloudlogo.png';
+
 
 function Navigation({ isLoaded }) {
     const user = useSelector(state => state.session.user);
 
     let links;
-
+    // <div>
     if (user) {
         links = (
-            <ProfileButton user={user} />
+            <div className='header-root'>
+                <div className='nav-links-logged-in'>
+                    <NavLink className='home-button' exact to='/'>
+                        {/* <HomeButton /> */}
+                        <img title='Home' className='logo' src={cloudlogo} />
+                    </NavLink>
+                    <NavLink className='nav-link' to='/songs'>Songs</NavLink>
+                    <NavLink className='nav-link' to='/albums'>Albums</NavLink>
+                    <ProfileButton user={user} />
+                </div>
+            </div>
         )
     }
     else {
         links = (
-            <>
-                {/* <NavLink to={'/login'}>Log In</NavLink> */}
-                <LoginFormModal />
-                <NavLink to={'/signup'}>Sign Up</NavLink>
-            </>
+            <div className='header-root'>
+                <div className='nav-links-logged-out'>
+                    <NavLink className='home-button' exact to='/'>
+                        {/* <HomeButton /> */}
+                        <img title='Home' className='logo' src={cloudlogo} />
+                    </NavLink>
+                    {/* <NavLink exact to='/'>Home</NavLink> */}
+                    {/* <HomeButton /> */}
+                    <NavLink className='nav-link' to='/songs'>Songs</NavLink>
+                    <NavLink className='nav-link' to='/albums'>Albums</NavLink>
+                    <NavLink className='nav-link' to='/signup'>
+                        <button className='button-sign-up'>Sign Up</button>
+                    </NavLink>
+                    <LoginFormModal />
+                </div>
+            </div>
         )
     }
-    return (
-        <ul>
-            <li>
-                <NavLink exact to='/'>Home</NavLink>
-                {isLoaded && links}
-            </li>
-        </ul>
-    );
+
+    return (isLoaded && links);
+
+    // </div>
 }
 
 export default Navigation;

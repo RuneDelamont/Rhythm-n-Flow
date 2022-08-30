@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import './SignupForm.css';
+// import './SignupForm.css';
 
 function SignupFormPage() {
     const dispatch = useDispatch();
@@ -22,13 +22,6 @@ function SignupFormPage() {
     const handleSubmit = e => {
         e.preventDefault();
         if(password === confirmPassword){
-            // console.log({
-            //     firstName,
-            //     lastName,
-            //     username,
-            //     email,
-            //     password
-            // })
             setErrors([]);
             return dispatch(sessionActions.signup({ firstName, lastName, email, password, username}))
                 .catch(async (res) => {
@@ -40,7 +33,7 @@ function SignupFormPage() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='sign-up-form' onSubmit={handleSubmit}>
             <ul>
                 {errors.map((error, id) => <li key={id}>{ error }</li>)}
             </ul>
