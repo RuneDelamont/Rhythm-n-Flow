@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import SignupFormModal from '../SignupFormPage';
 import HomeButton from './HomeButton';
 import './Navigation.css';
 import cloudlogo from '../../images/cloudlogo.png';
@@ -40,9 +41,10 @@ function Navigation({ isLoaded }) {
                     {/* <HomeButton /> */}
                     <NavLink className='nav-link' to='/songs'>Songs</NavLink>
                     <NavLink className='nav-link' to='/albums'>Albums</NavLink>
-                    <NavLink className='nav-link' to='/signup'>
+                    {/* <NavLink className='nav-link' to='/signup'>
                         <button className='button-sign-up'>Sign Up</button>
-                    </NavLink>
+                    </NavLink> */}
+                    <SignupFormModal />
                     <LoginFormModal />
                 </div>
             </div>
