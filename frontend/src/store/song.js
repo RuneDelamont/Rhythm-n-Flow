@@ -1,7 +1,15 @@
 import { csrfFetch } from "./csrf";
 
+const GET_SONG = 'song/get';
 const SET_SONG = 'song/setSong';
 const REMOVE_SONG = 'song/removeSong';
+
+const getSongs = (songs) => {
+    return {
+        type: GET_SONG,
+        songs
+    }
+}
 
 const setSong = song => {
     return {
@@ -15,6 +23,22 @@ const removeSong = () => {
         type: REMOVE_SONG
     };
 };
+
+export const getAllSongs = () => async dispatch => {
+    const response = await csrfFetch('/songs');
+
+    const data = response.json();
+    dispatch(getSongs(data));
+    return response;
+}
+
+export const getSongbyId = (id) => async dispatch => {
+    const response = await csrfFetch(`/songs/${id}`);
+
+    const data = await response.json();
+    dispatch(getSongs(data));
+    return response;
+}
 
 
 export const addSong = (albumId, song) => async dispatch => {
@@ -80,6 +104,15 @@ const songReducer = (state = initialState, action) => {
             newState = Object.assign({}, state);
             newState.song = null;
             return newState;
+        case GET_SONG:
+            newState = {};
+            action.songs.forEach( song => {
+                newState[song.id] = song;
+            });
+            return {
+                ...newState,
+                ...state
+            };
         default:
             return state;
     }

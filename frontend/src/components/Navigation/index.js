@@ -18,7 +18,7 @@ function Navigation({ isLoaded }) {
         links = (
             <div className='header-root'>
                 <div className='nav-links-logged-in'>
-                    <NavLink className='home-button' exact to='/'>
+                    <NavLink className='home-button' exact to='/home'>
                         {/* <HomeButton /> */}
                         <img title='Home' className='logo' src={cloudlogo} />
                     </NavLink>
@@ -33,7 +33,7 @@ function Navigation({ isLoaded }) {
         links = (
             <div className='header-root'>
                 <div className='nav-links-logged-out'>
-                    <NavLink className='home-button' exact to='/'>
+                    <NavLink className='home-button' exact to='/home'>
                         {/* <HomeButton /> */}
                         <img title='Home' className='logo' src={cloudlogo} />
                     </NavLink>

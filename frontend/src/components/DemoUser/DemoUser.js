@@ -9,7 +9,7 @@ function DemoUser () {
     const [password] = useState('password');
 
     const demoLogin = e => {
-        // e.preventDefault();
+        e.preventDefault();
         return dispatch(sessionActions.login({ credential, password }));
     }
 

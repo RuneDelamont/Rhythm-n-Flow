@@ -5,6 +5,8 @@ import * as sessionActions from './store/session';
 import SignupFormPage from './components/SignupFormPage';
 import Navigation from './components/Navigation';
 import HomePage from './components/HomePage/HomePage';
+import SongsPage from './components/Songs';
+import AlbumsPage from './components/Albums';
 
 
 function App() {
@@ -26,14 +28,18 @@ function App() {
             {/* <Route path="/login">
             <LoginFormPage />
           </Route> */}
-            <Route exact path='/'>
+            <Route exact path='/home'>
               <HomePage />
             </Route>
             <Route path='/signup'>
               <SignupFormPage />
             </Route>
-            <Route path='/songs'>Songs</Route>
-            <Route path='/albums'>Albums</Route>
+            <Route path='/songs'>
+              <SongsPage />
+            </Route>
+            <Route path='/albums'>
+              <AlbumsPage />
+            </Route>
           </Switch>
         )}
       </div>
