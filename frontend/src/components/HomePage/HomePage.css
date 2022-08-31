@@ -1,0 +1,17 @@
+.home-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 15rem;
+    min-height: 20rem;
+    min-width: 24rem;
+    background-color: rgba(237, 237, 237, 0.75);
+    border: 1px solid #666;
+    z-index: 2;
+}
+
+.home-title{
+    color:rgb(0, 0, 0)
+}

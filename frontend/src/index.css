@@ -2,6 +2,7 @@
 html{
     background-image:
     url('./images/SoundCloudBackground.jpg');
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body{
@@ -21,4 +22,6 @@ body{
 
 .content{
     display: flex;
+    justify-content: center;
+    flex: 1;
 }

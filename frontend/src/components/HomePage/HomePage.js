@@ -4,7 +4,11 @@ import './HomePage.css'
 
 function HomePage () {
     return (
-        <h1>Home Page</h1>
+        <div className='home-container'>
+
+            <h1 className='home-title'>SoundCloud</h1>
+            <h3>Discover more with SoundCloud</h3>
+        </div>
     )
 }
 
