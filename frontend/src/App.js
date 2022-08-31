@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from './store/session';
 import SignupFormPage from './components/SignupFormPage';
 import Navigation from './components/Navigation';
+import HomePage from './components/HomePage/HomePage';
 
 
 function App() {
@@ -15,22 +16,26 @@ function App() {
   }, [dispatch]);
 
   return isLoaded && (
-    <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          {/* <Route path="/login">
+    <div className='container'>
+      <div className='header'>
+        <Navigation isLoaded={isLoaded} />
+      </div>
+      <div className='content'>
+        {isLoaded && (
+          <Switch>
+            {/* <Route path="/login">
             <LoginFormPage />
           </Route> */}
-          <Route exact path ='/'>Home</Route>
-          <Route path='/signup'>
-            <SignupFormPage />
-          </Route>
-          <Route path='/songs'>Songs</Route>
-          <Route path='/albums'>Albums</Route>
-        </Switch>
-      )}
-    </>
+            <Route exact path='/'>Home</Route>
+            <Route path='/signup'>
+              <SignupFormPage />
+            </Route>
+            <Route path='/songs'>Songs</Route>
+            <Route path='/albums'>Albums</Route>
+          </Switch>
+        )}
+      </div>
+    </div>
   );
 }
 

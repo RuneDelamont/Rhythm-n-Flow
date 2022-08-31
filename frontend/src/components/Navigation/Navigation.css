@@ -3,7 +3,7 @@
     height: 46px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16;
-    position: fixed;
+    position: absolute;
     width: 100%;
 }
 
