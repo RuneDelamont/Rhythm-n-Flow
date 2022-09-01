@@ -6,7 +6,7 @@ function AlbumsPage() {
     const user = useSelector(state => state.session.user);
 
     if(!user) return(
-        <Redirect to='/home' />
+        <Redirect to='/' />
     );
 
     return (

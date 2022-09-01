@@ -16,7 +16,7 @@ function SignupForm() {
     const [errors, setErrors] = useState([]);
 
     if(sessionUser) return (
-        <Redirect to='/home' />
+        <Redirect to='/' />
     );
 
     const handleSubmit = e => {

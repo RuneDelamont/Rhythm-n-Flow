@@ -4,7 +4,7 @@ import cloudlogo from '../../images/cloudlogo.png'
 
 function HomeButton () {
     <>
-        <NavLink to='/home'>
+        <NavLink to='/'>
             <img src={cloudlogo}/>
         </NavLink>
     </>
