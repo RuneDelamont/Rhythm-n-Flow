@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from './store/session';
+import * as songActions from './store/song';
 import SignupFormPage from './components/SignupFormPage';
 import Navigation from './components/Navigation';
 import HomePage from './components/HomePage/HomePage';
@@ -14,6 +15,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    dispatch(songActions.getAllSongs());
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true))
   }, [dispatch]);
 

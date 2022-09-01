@@ -111,23 +111,18 @@ const songReducer = (state = initialState, action) => {
             return newState;
         case REMOVE_SONG:
             newState = Object.assign({}, state);
-            newState.song = null;
+            delete newState[action.id];
             return newState;
         case GET_SONGS:
             newState = {};
             action.songs.Songs.forEach( song => {
                 newState[song.id] = song;
             });
-            newState['page'] = action.songs.page;
-            newState['size'] = action.songs.size;
             return {
-                ...newState,
-                ...state
+                ...newState
             };
         case GET_SONG:
             newState = Object.assign({}, state);
-            // console.log(action.id);
-            // newState[action.id] = id;
             return newState[action.id];
         default:
             return state;

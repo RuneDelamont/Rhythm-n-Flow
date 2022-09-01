@@ -1,0 +1,28 @@
+.song-content{
+    margin: 8rem;
+    background-color: rgba(237, 237, 237, 0.943);
+    border: 1px solid #666;
+    width: 80%
+}
+
+.song-row{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+    display: flex;
+}
+
+.song-header{
+    text-align: center;
+}
+
+.song-image{
+    background-color: blue;
+    height: 0;
+    width:20%;
+    padding-bottom:20%;
+}
+
+.song-details{
+    margin-left: 5rem;
+}
