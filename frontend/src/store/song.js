@@ -70,7 +70,7 @@ export const addSong = (albumId, song) => async dispatch => {
 };
 
 export const putSong = song => async dispatch => {
-    const { id, title, description, url, imageUrl } = song;
+    const { id, title, description, url, previewImage } = song;
 
     const response = await csrfFetch(`/songs/${id}`, {
         method: 'PUT',
@@ -78,7 +78,7 @@ export const putSong = song => async dispatch => {
             title,
             description,
             url,
-            imageUrl
+            previewImage
         })
     });
 

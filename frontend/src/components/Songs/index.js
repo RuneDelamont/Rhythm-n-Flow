@@ -37,7 +37,7 @@ function SongsPage() {
                         </div>
                         <div className='song-details'>
                             <div className='song-title'>
-                                <NavLink to={`/songs/$song.id`}>{song.title}</NavLink>
+                                <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
                             </div>
                             <div className='song-description'>{song.description}</div>
                         </div>

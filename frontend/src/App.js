@@ -8,6 +8,7 @@ import Navigation from './components/Navigation';
 import HomePage from './components/HomePage/HomePage';
 import SongsPage from './components/Songs';
 import AlbumsPage from './components/Albums';
+import SongDetails from './components/SongDetails';
 
 
 function App() {
@@ -31,6 +32,9 @@ function App() {
             <LoginFormPage />
           </Route> */}
 
+            <Route path='/songs/:songId'>
+              <SongDetails />
+            </Route>
             <Route path='/signup'>
               <SignupFormPage />
             </Route>
