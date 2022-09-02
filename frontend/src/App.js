@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from './store/session';
 import * as songActions from './store/song';
+import * as albumActions from './store/album';
 import SignupFormPage from './components/SignupFormPage';
 import Navigation from './components/Navigation';
 import HomePage from './components/HomePage/HomePage';
@@ -17,6 +18,7 @@ function App() {
 
   useEffect(() => {
     dispatch(songActions.getAllSongs());
+    dispatch(albumActions.getAlbums());
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true))
   }, [dispatch]);
 

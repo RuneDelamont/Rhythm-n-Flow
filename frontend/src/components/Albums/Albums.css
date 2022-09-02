@@ -1,0 +1,28 @@
+.album-content{
+    margin: 8rem;
+    background-color: rgba(237, 237, 237, 0.943);
+    border: 1px solid #666;
+    width: 80%
+}
+
+.album-row{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+    display: flex;
+}
+
+.album-header{
+    text-align: center;
+}
+
+.album-image{
+    background-color: blue;
+    height: 0;
+    width:20%;
+    padding-bottom:20%;
+}
+
+.album-details{
+    margin-left: 5rem;
+}

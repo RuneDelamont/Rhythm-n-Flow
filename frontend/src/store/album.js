@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const SET_ALBUM = 'album/setAlbum';
 const REMOVE_ALBUM = 'album/removeAlbum';
+const GET_ALBUMS = 'album/getAlbums';
 
 const setAlbum = (album) => {
     return {
@@ -10,10 +11,28 @@ const setAlbum = (album) => {
     };
 };
 
-const removeAlbum = () => {
+const removeAlbum = (id) => {
     return {
-        type: REMOVE_ALBUM
+        type: REMOVE_ALBUM,
+        id
     };
+};
+
+const getAllAlbums = (albums) => {
+    return {
+        type: GET_ALBUMS,
+        albums
+    }
+}
+
+export const getAlbums = () => async dispatch => {
+    const response = await csrfFetch('/albums');
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(getAllAlbums(data));
+        return Object.values(response);
+    }
 };
 
 export const addAlbum = album => async dispatch => {
@@ -27,14 +46,15 @@ export const addAlbum = album => async dispatch => {
         })
     });
 
-    const data = await response.json();
-
-    dispatch(setAlbum(data));
-    return response;
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(setAlbum(data));
+        return response;
+    }
 }
 
 export const putAlbum = album => async dispatch => {
-    const {id,  title, description, previewImage } = album;
+    const { id, title, description, previewImage } = album;
 
     const response = await csrfFetch(`/albums/${id}`, {
         method: 'PUT',
@@ -45,9 +65,11 @@ export const putAlbum = album => async dispatch => {
         })
     });
 
-    const data = await response.json();
-    dispatch(setAlbum(data));
-    return response;
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(setAlbum(data));
+        return response;
+    }
 }
 
 export const deleteAlbum = id => async dispatch => {
@@ -56,24 +78,32 @@ export const deleteAlbum = id => async dispatch => {
         method: 'DELETE'
     });
 
-    const data = await response.json();
-    dispatch(removeAlbum());
-    return response;
+    if (response.ok) {
+        await response.json();
+        dispatch(removeAlbum());
+        return response;
+    }
 }
 
-const initialState = { album: null };
+const initialState = { };
 
-const albumReducer = ( state = initialState, action ) => {
-    let newState;
+const albumReducer = (state = initialState, action) => {
+    let newState = state;
 
-    switch(action.type){
+    switch (action.type) {
         case SET_ALBUM:
-            newState = Object.assign({}, state);
-            newState.album = action.album;
+            newState = { ...state };
+            newState[action.album.id] = action.album;
             return newState;
         case REMOVE_ALBUM:
-            newState = Object.assign({}, state);
-            newState.album = null;
+            newState = { ...state };
+            delete newState[action.id];
+            return newState;
+        case GET_ALBUMS:
+            newState = { ...state };
+            action.albums.Albums.forEach(album => {
+                newState[album.id] = album;
+            });
             return newState;
         default:
             return state;

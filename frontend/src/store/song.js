@@ -13,12 +13,7 @@ const getSongs = (songs) => {
     }
 };
 
-const getSong = (song) => {
-    return {
-        type: GET_SONG,
-        song
-    }
-}
+
 
 const setSong = song => {
     return {
@@ -115,32 +110,32 @@ export const deleteSong = id => async dispatch => {
 };
 
 
-const initialState = { song: null };
+const initialState = { };
 
 const songReducer = (state = initialState, action) => {
     let newState = state;
 
     switch (action.type) {
         case SET_SONG:
-            newState = Object.assign({}, state);
+            newState = { ...state };
             newState[action.song.id] = action.song;
             return newState;
         case REMOVE_SONG:
-            newState = Object.assign({}, state);
-            console.log(newState[action.id])
+            newState = { ...state };
             delete newState[action.id];
             return newState;
         case GET_SONGS:
+            newState = { ...state };
             newState = {};
             action.songs.Songs.forEach(song => {
                 newState[song.id] = song;
             });
             return newState;
         case GET_SONG:
-            newState = Object.assign({}, state);
+            newState = { ...state };
             return newState[action.id];
         case UPDATE_SONG:
-            newState = Object.assign({}, state);
+            newState = { ...state };
             newState[action.song.id] = action.song;
             return newState;
         default:

@@ -1,17 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import './Albums.css';
 
 function AlbumsPage() {
     const user = useSelector(state => state.session.user);
+    const albums = useSelector(state => Object.values(state.albums));
 
     if(!user) return(
         <Redirect to='/' />
     );
 
     return (
-        <div>
-            <h1>Albums</h1>
+        <div className='album-content'>
+            <h1 className='album-header'>Albums</h1>
+            {albums && albums.map(album => {
+                    return (
+                        <div className='album-row' key={album.id}>
+                            <div className='album-image'>
+                                <div className='album-image-content'>
+                                    <img src={album.previewImage} alt={album.title} />
+                                </div>
+                            </div>
+                            <div className='album-details'>
+                                <div className='album-title'>
+                                    <NavLink to={`/albums/${album.id}`}>{album.title}</NavLink>
+                                </div>
+                                <div className='album-description'>{album.description}</div>
+                            </div>
+                        </div>
+                    )
+                })
+            }
         </div>
     )
 }

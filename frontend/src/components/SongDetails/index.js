@@ -62,54 +62,110 @@ function SongDetails() {
 
     }
 
-    return (
-        <div className='song-details'>
-            <h1>Song details</h1>
-            {(user.id === song.userId) &&
-                (
-                    <div className='button-divs'>
-                        <button onClick={edit}>Edit Song</button>
-                        <button onClick={deleteSong}>Delete Song</button>
-                    </div>
-                )
-            }
-            <form className='edit-song-details' onSubmit={handleSubmit}>
-                <input
-                    type='text'
-                    // placeholder={title}
-                    value={title}
-                    disabled={disabled}
-                    onChange={updateTitle}
-                >
-                </input>
-                <input
-                    type='text'
-                    // placeholder={description}
-                    value={description}
-                    disabled={disabled}
-                    onChange={updateDescription}
-                >
-                </input>
-                <input
-                    type='text'
-                    // placeholder={url}
-                    value={url}
-                    disabled={disabled}
-                    onChange={updateUrl}
-                >
-                </input>
-                <input
-                    type='text'
-                    // placeholder={previewImage}
-                    value={previewImage}
-                    disabled={disabled}
-                    onChange={updatePreviewImage}
-                >
-                </input>
-                <button type='submit'>Update song</button>
-            </form>
-        </div>
-    );
+    let songform;
+
+    if(song.userId === user.id){
+        songform = (
+            <div className='song-details'>
+                <h1>Song details</h1>
+                {(user.id === song.userId) &&
+                    (
+                        <div className='button-divs'>
+                            <button onClick={edit}>Edit Song</button>
+                            <button onClick={deleteSong}>Delete Song</button>
+                        </div>
+                    )
+                }
+                <form className='edit-song-details' onSubmit={handleSubmit}>
+                    <input
+                        type='text'
+                        // placeholder={title}
+                        value={title}
+                        disabled={disabled}
+                        onChange={updateTitle}
+                    >
+                    </input>
+                    <input
+                        type='text'
+                        // placeholder={description}
+                        value={description}
+                        disabled={disabled}
+                        onChange={updateDescription}
+                    >
+                    </input>
+                    <input
+                        type='text'
+                        // placeholder={url}
+                        value={url}
+                        disabled={disabled}
+                        onChange={updateUrl}
+                    >
+                    </input>
+                    <input
+                        type='text'
+                        // placeholder={previewImage}
+                        value={previewImage}
+                        disabled={disabled}
+                        onChange={updatePreviewImage}
+                    >
+                    </input>
+
+                    <button type='submit'>Update song</button>
+                </form>
+            </div>
+        );
+    }else{
+        songform = (
+            <div className='song-details'>
+                <h1>Song details</h1>
+                {(user.id === song.userId) &&
+                    (
+                        <div className='button-divs'>
+                            <button onClick={edit}>Edit Song</button>
+                            <button onClick={deleteSong}>Delete Song</button>
+                        </div>
+                    )
+                }
+                <form className='edit-song-details' onSubmit={handleSubmit}>
+                    <input
+                        type='text'
+                        // placeholder={title}
+                        value={title}
+                        disabled={disabled}
+                        onChange={updateTitle}
+                    >
+                    </input>
+                    <input
+                        type='text'
+                        // placeholder={description}
+                        value={description}
+                        disabled={disabled}
+                        onChange={updateDescription}
+                    >
+                    </input>
+                    <input
+                        type='text'
+                        // placeholder={url}
+                        value={url}
+                        disabled={disabled}
+                        onChange={updateUrl}
+                    >
+                    </input>
+                    <input
+                        type='text'
+                        // placeholder={previewImage}
+                        value={previewImage}
+                        disabled={disabled}
+                        onChange={updatePreviewImage}
+                    >
+                    </input>
+
+                </form>
+            </div>
+        );
+    }
+
+    return songform;
 }
 
 export default SongDetails;
