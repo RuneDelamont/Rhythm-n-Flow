@@ -28,7 +28,7 @@ function SongDetails() {
     // initial data
     useEffect(() => {
         dispatch(songActions.getSongbyId(songId))
-    }, [songId]);
+    }, [dispatch]);
 
     // disable/enable form
     const edit = () => {
@@ -73,7 +73,7 @@ function SongDetails() {
                 <h1>Song details</h1>
                 {(user.id === song.userId) &&
                     (
-                        <div className='button-divs'>
+                        <div className='song-button-divs'>
                             <button onClick={edit}>Edit Song</button>
                             <button onClick={deleteSong}>Delete Song</button>
                         </div>

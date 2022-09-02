@@ -5,12 +5,15 @@ import * as songActions from '../../store/song';
 import './Songs.css';
 
 function SongsPage() {
+    const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const songs = useSelector(state => {
         return Object.values(state.songs);
     });
 
-
+    useEffect( () => {
+        dispatch(songActions.getAllSongs())
+    }, [dispatch])
 
 
     if (!user) return (

@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import * as albumActions from '../../store/album';
 import './Albums.css';
 
 function AlbumsPage() {
     const user = useSelector(state => state.session.user);
     const albums = useSelector(state => Object.values(state.albums));
+    const dispatch = useDispatch();
+
+    useEffect( () => {
+        dispatch(albumActions.getAlbums())
+    }, [dispatch])
 
     if(!user) return(
         <Redirect to='/' />
