@@ -10,6 +10,7 @@ import HomePage from './components/HomePage/HomePage';
 import SongsPage from './components/Songs';
 import AlbumsPage from './components/Albums';
 import SongDetails from './components/SongDetails';
+import AlbumDetails from './components/AlbumDetails';
 
 
 function App() {
@@ -36,6 +37,9 @@ function App() {
 
             <Route path='/songs/:songId'>
               <SongDetails />
+            </Route>
+            <Route path='/albums/:albumId'>
+              <AlbumDetails />
             </Route>
             <Route path='/signup'>
               <SignupFormPage />

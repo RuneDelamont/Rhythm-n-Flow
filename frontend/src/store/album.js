@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const SET_ALBUM = 'album/setAlbum';
 const REMOVE_ALBUM = 'album/removeAlbum';
 const GET_ALBUMS = 'album/getAlbums';
+const GET_ALBUM = 'album/getAlbum';
 
 const setAlbum = (album) => {
     return {
@@ -25,6 +26,13 @@ const getAllAlbums = (albums) => {
     }
 }
 
+const getAlbum = album => {
+    return {
+        type: GET_ALBUM,
+        album
+    };
+};
+
 export const getAlbums = () => async dispatch => {
     const response = await csrfFetch('/albums');
 
@@ -34,6 +42,16 @@ export const getAlbums = () => async dispatch => {
         return Object.values(response);
     }
 };
+
+export const getAlbumById = id => async dispatch => {
+    const response = await csrfFetch(`/albums/${id}`);
+
+    if(response.ok){
+        const data = await response.json();
+        dispatch(getAlbum(data));
+        return response;
+    }
+}
 
 export const addAlbum = album => async dispatch => {
     const { title, description, previewImage } = album;
@@ -105,6 +123,9 @@ const albumReducer = (state = initialState, action) => {
                 newState[album.id] = album;
             });
             return newState;
+        case GET_ALBUM:
+            newState = { ...state };
+            return newState[action.album.id]
         default:
             return state;
     }

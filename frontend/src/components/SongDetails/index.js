@@ -5,46 +5,48 @@ import * as songActions from '../../store/song';
 
 function SongDetails() {
 
+    // methods
     const dispatch = useDispatch();
     const { songId } = useParams();
     const history = useHistory();
     const song = useSelector(state => state.songs[songId]);
-    // console.log(song);
     const user = useSelector(state => state.session.user);
 
-
+    // states
     const [disabled, setDisabled] = useState(true);
     const [title, setTitle] = useState(song.title);
     const [description, setDescription] = useState(song.description);
     const [url, setUrl] = useState(song.url);
     const [previewImage, setPreviewImage] = useState(song.previewImage);
 
+    // onchange functions
     const updateTitle = e => setTitle(e.target.value);
     const updateDescription = e => setDescription(e.target.value);
     const updateUrl = e => setUrl(e.target.value);
     const updatePreviewImage = e => setPreviewImage(e.target.value);
 
+    // initial data
     useEffect(() => {
         dispatch(songActions.getSongbyId(songId))
     }, [songId]);
 
-    // disable/enable edit song form
+    // disable/enable form
     const edit = () => {
         if (disabled === true) setDisabled(false);
         else setDisabled(true);
     }
 
+    // delete song
     const deleteSong = (e) => {
         e.preventDefault();
 
         if (song.userId === user.id) {
-            console.log(song.id);
             dispatch(songActions.deleteSong(song.id));
             history.push('/songs');
         }
     }
 
-    // submit new song
+    // edit song
     const handleSubmit = (e) => {
         e.preventDefault();
         const songNum = Number(songId);
@@ -64,6 +66,7 @@ function SongDetails() {
 
     let songform;
 
+    // if user owns song, allow delete and edit
     if(song.userId === user.id){
         songform = (
             <div className='song-details'>
@@ -79,7 +82,6 @@ function SongDetails() {
                 <form className='edit-song-details' onSubmit={handleSubmit}>
                     <input
                         type='text'
-                        // placeholder={title}
                         value={title}
                         disabled={disabled}
                         onChange={updateTitle}
@@ -87,7 +89,6 @@ function SongDetails() {
                     </input>
                     <input
                         type='text'
-                        // placeholder={description}
                         value={description}
                         disabled={disabled}
                         onChange={updateDescription}
@@ -95,7 +96,6 @@ function SongDetails() {
                     </input>
                     <input
                         type='text'
-                        // placeholder={url}
                         value={url}
                         disabled={disabled}
                         onChange={updateUrl}
@@ -103,7 +103,6 @@ function SongDetails() {
                     </input>
                     <input
                         type='text'
-                        // placeholder={previewImage}
                         value={previewImage}
                         disabled={disabled}
                         onChange={updatePreviewImage}
@@ -114,22 +113,15 @@ function SongDetails() {
                 </form>
             </div>
         );
+
+    // else show data
     }else{
         songform = (
             <div className='song-details'>
                 <h1>Song details</h1>
-                {(user.id === song.userId) &&
-                    (
-                        <div className='button-divs'>
-                            <button onClick={edit}>Edit Song</button>
-                            <button onClick={deleteSong}>Delete Song</button>
-                        </div>
-                    )
-                }
                 <form className='edit-song-details' onSubmit={handleSubmit}>
                     <input
                         type='text'
-                        // placeholder={title}
                         value={title}
                         disabled={disabled}
                         onChange={updateTitle}
@@ -137,7 +129,6 @@ function SongDetails() {
                     </input>
                     <input
                         type='text'
-                        // placeholder={description}
                         value={description}
                         disabled={disabled}
                         onChange={updateDescription}
@@ -145,7 +136,6 @@ function SongDetails() {
                     </input>
                     <input
                         type='text'
-                        // placeholder={url}
                         value={url}
                         disabled={disabled}
                         onChange={updateUrl}
@@ -153,7 +143,6 @@ function SongDetails() {
                     </input>
                     <input
                         type='text'
-                        // placeholder={previewImage}
                         value={previewImage}
                         disabled={disabled}
                         onChange={updatePreviewImage}
