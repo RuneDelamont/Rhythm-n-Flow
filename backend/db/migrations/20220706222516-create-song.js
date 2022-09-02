@@ -21,7 +21,8 @@ module.exports = {
         references: {
           model: 'Albums',
           key: 'id'
-        }
+        },
+        onDelete: 'cascade'
       },
       title: {
         allowNull: false,

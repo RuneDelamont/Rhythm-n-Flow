@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as songActions from '../../store/song';
 
@@ -7,9 +7,11 @@ function SongDetails() {
 
     const dispatch = useDispatch();
     const { songId } = useParams();
+    const history = useHistory();
     const song = useSelector(state => state.songs[songId]);
-    console.log(typeof songId)
-    console.log(song);
+    // console.log(song);
+    const user = useSelector(state => state.session.user);
+
 
     const [disabled, setDisabled] = useState(true);
     const [title, setTitle] = useState(song.title);
@@ -26,13 +28,23 @@ function SongDetails() {
         dispatch(songActions.getSongbyId(songId))
     }, [songId]);
 
+    // disable/enable edit song form
     const edit = () => {
         if (disabled === true) setDisabled(false);
         else setDisabled(true);
     }
 
+    const deleteSong = (e) => {
+        e.preventDefault();
 
+        if (song.userId === user.id) {
+            console.log(song.id);
+            dispatch(songActions.deleteSong(song.id));
+            history.push('/songs');
+        }
+    }
 
+    // submit new song
     const handleSubmit = (e) => {
         e.preventDefault();
         const songNum = Number(songId);
@@ -53,36 +65,43 @@ function SongDetails() {
     return (
         <div className='song-details'>
             <h1>Song details</h1>
-            <button onClick={edit}>Edit</button>
+            {(user.id === song.userId) &&
+                (
+                    <div className='button-divs'>
+                        <button onClick={edit}>Edit Song</button>
+                        <button onClick={deleteSong}>Delete Song</button>
+                    </div>
+                )
+            }
             <form className='edit-song-details' onSubmit={handleSubmit}>
                 <input
                     type='text'
-                    placeholder={song.title}
-                    // value=
+                    // placeholder={title}
+                    value={title}
                     disabled={disabled}
                     onChange={updateTitle}
                 >
                 </input>
                 <input
                     type='text'
-                    placeholder={song.description}
-                    // value=
+                    // placeholder={description}
+                    value={description}
                     disabled={disabled}
                     onChange={updateDescription}
                 >
                 </input>
                 <input
                     type='text'
-                    placeholder={song.url}
-                    // value=
+                    // placeholder={url}
+                    value={url}
                     disabled={disabled}
                     onChange={updateUrl}
                 >
                 </input>
                 <input
                     type='text'
-                    placeholder={song.previewImage}
-                    // value=
+                    // placeholder={previewImage}
+                    value={previewImage}
                     disabled={disabled}
                     onChange={updatePreviewImage}
                 >

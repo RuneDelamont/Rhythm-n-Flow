@@ -4,6 +4,7 @@ const GET_SONGS = 'song/getSongs';
 const GET_SONG = 'song/getSong';
 const SET_SONG = 'song/setSong';
 const REMOVE_SONG = 'song/removeSong';
+const UPDATE_SONG = 'song/updateSong';
 
 const getSongs = (songs) => {
     return {
@@ -26,11 +27,19 @@ const setSong = song => {
     };
 };
 
-const removeSong = () => {
+const removeSong = (id) => {
     return {
-        type: REMOVE_SONG
+        type: REMOVE_SONG,
+        id
     };
 };
+
+const updateSong = (song) => {
+    return {
+        type: UPDATE_SONG,
+        song
+    }
+}
 
 export const getAllSongs = () => async dispatch => {
     const response = await csrfFetch('/songs');
@@ -53,7 +62,7 @@ export const getSongbyId = (id) => async dispatch => {
 export const addSong = (albumId, song) => async dispatch => {
     const { title, description, url, imageUrl } = song;
 
-    const response = await csrfFetch(`/songs/${albumId}`,{
+    const response = await csrfFetch(`/songs/${albumId}`, {
         method: 'POST',
         body: JSON.stringify({
             title,
@@ -82,20 +91,27 @@ export const putSong = song => async dispatch => {
         })
     });
 
-    const data = await response.json();
-    dispatch(setSong(data));
-    return response;
+    if(response.ok){
+        const data = await response.json();
+        dispatch(updateSong(data));
+        return response;
+    }
 };
 
 export const deleteSong = id => async dispatch => {
+
 
     const response = await csrfFetch(`/songs/${id}`, {
         method: 'DELETE'
     });
 
-    const data = await response.json();
-    dispatch(removeSong(data));
-    return response;
+    // console.log(response);
+
+    if (response.ok) {
+        await response.json();
+        dispatch(removeSong(id));
+        return response;
+    }
 };
 
 
@@ -104,26 +120,29 @@ const initialState = { song: null };
 const songReducer = (state = initialState, action) => {
     let newState = state;
 
-    switch(action.type){
+    switch (action.type) {
         case SET_SONG:
             newState = Object.assign({}, state);
-            newState.song = action.song;
+            newState[action.song.id] = action.song;
             return newState;
         case REMOVE_SONG:
             newState = Object.assign({}, state);
+            console.log(newState[action.id])
             delete newState[action.id];
             return newState;
         case GET_SONGS:
             newState = {};
-            action.songs.Songs.forEach( song => {
+            action.songs.Songs.forEach(song => {
                 newState[song.id] = song;
             });
-            return {
-                ...newState
-            };
+            return newState;
         case GET_SONG:
             newState = Object.assign({}, state);
             return newState[action.id];
+        case UPDATE_SONG:
+            newState = Object.assign({}, state);
+            newState[action.song.id] = action.song;
+            return newState;
         default:
             return state;
     }

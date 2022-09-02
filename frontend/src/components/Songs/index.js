@@ -12,9 +12,9 @@ function SongsPage() {
     });
 
 
-    useEffect(() => {
-        dispatch(getAllSongs())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getAllSongs())
+    // }, [dispatch])
 
 
     if (!user) return (
