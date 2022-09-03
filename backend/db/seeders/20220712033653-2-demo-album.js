@@ -8,7 +8,7 @@ module.exports = {
         title: 'Perception',
         userId: 1,
         description: "Perception NF",
-        previewImage: "https://www.nfrealmusic.com/"
+        previewImage: "https://www.pluggedin.com/wp-content/uploads/2020/01/NF__Perception__Large.jpg-1024x587.jpeg"
       },
       {
         title: "Mansion",

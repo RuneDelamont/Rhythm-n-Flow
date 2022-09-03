@@ -106,7 +106,7 @@ export const deleteAlbum = id => async dispatch => {
 const initialState = { };
 
 const albumReducer = (state = initialState, action) => {
-    let newState = state;
+    let newState = {};
 
     switch (action.type) {
         case SET_ALBUM:

@@ -8,12 +8,12 @@ function AlbumDetails() {
 
     // methods
     const dispatch = useDispatch();
-    const { albumId } = useParams();
-    const albumIdnum = Number(albumId)
+    let { albumId } = useParams();
+    // albumId = Number(albumId)
     const history = useHistory();
-    const album = useSelector(state => state.albums[albumIdnum]);
+    const album = useSelector(state => state.albums[albumId]);
     const user = useSelector(state => state.session.user);
-    console.log(album.id, album.userId)
+    console.log(album)
 
     // states
     const [disabled, setDisabled] = useState(true);
@@ -27,10 +27,10 @@ function AlbumDetails() {
     const updatePreviewImage = e => setPreviewImage(e.target.value);
 
     // initial data
-    // useEffect(() => {
-    //     // dispatch(albumActions.getAllAlbums());
-    //     dispatch(albumActions.getAlbumById(albumId));
-    // }, [dispatch]);
+    useEffect(() => {
+        dispatch(albumActions.getAllAlbums());
+        // dispatch(albumActions.getAlbumById(albumId));
+    }, [dispatch]);
 
     // disable/enable form
     const edit = () => {
@@ -38,14 +38,13 @@ function AlbumDetails() {
         else setDisabled(true);
     }
 
-    // delete song
+    // delete album
     const deleteAlbum = (e) => {
         e.preventDefault();
 
-        if (album.userId === user.id) {
-            dispatch(albumActions.deleteAlbum(albumId));
-            history.push('/albums');
-        }
+        dispatch(albumActions.deleteAlbum(album.id));
+        history.push('/albums');
+
     }
 
     // edit album
@@ -73,8 +72,8 @@ function AlbumDetails() {
             <div className='album-details'>
                 <h1>Album details</h1>
                 <div className='album-button-divs'>
-                    <button>Edit Album</button>
-                    <button>Delete Album</button>
+                    <button onClick={edit}>Edit Album</button>
+                    <button onClick={deleteAlbum}>Delete Album</button>
                 </div>
                 <form className='edit-album-details' onSubmit={handleSubmit}>
                     <input
@@ -99,7 +98,7 @@ function AlbumDetails() {
                 </form>
             </div>
         )
-    }else{
+    } else {
         albumform = (
             <div className='album-details'>
                 <h1>Album details</h1>

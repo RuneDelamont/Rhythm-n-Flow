@@ -17,10 +17,16 @@
 }
 
 .album-image{
-    background-color: blue;
+    /* background-color: blue; */
     height: 0;
     width:20%;
     padding-bottom:20%;
+}
+
+.album-pic{
+    height: 100%;
+    width:100%;
+    /* padding-bottom:20%; */
 }
 
 .album-details{
