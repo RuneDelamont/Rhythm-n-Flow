@@ -25,9 +25,9 @@ function AlbumsPage() {
             {albums && albums.map((album) => {
                 return (
                     <div className='album-row' key={album.id}>
-                        <div className='album-image'>
+                        <div className='album-image-container'>
                             <div className='album-image-content'>
-                                <img className='album-pic'src={album.previewImage} alt={album.title} />
+                                <img className='album-image'src={album.previewImage} alt={album.title} />
                             </div>
                         </div>
                         <div className='album-details'>

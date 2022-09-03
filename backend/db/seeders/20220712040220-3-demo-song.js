@@ -12,7 +12,7 @@ module.exports = {
       title: "Outcast",
       description: "NF's Outcast",
       url: "https://www.nfrealmusic.com/",
-      previewImage: "https://www.nfrealmusic.com/"
+      previewImage: "https://www.pluggedin.com/wp-content/uploads/2020/01/NF__Perception__Large.jpg-1024x587.jpeg"
     },
     {
       userId: 1,
@@ -20,7 +20,7 @@ module.exports = {
       title: "Wait",
       description: "Wait by NF",
       url: "https://www.nfrealmusic.com/",
-      previewImage: "https://www.nfrealmusic.com/"
+      previewImage: "https://m.media-amazon.com/images/I/71o6fTQjpcL._SL1500_.jpg"
     },
     {
       userId: 2,
@@ -28,7 +28,7 @@ module.exports = {
       title: "Astronaut",
       description: "Astronaut by Derek Minor",
       url: "http://www.derekminor.com/",
-      previewImage: "http://www.derekminor.com/"
+      previewImage: "https://angartwork.akamaized.net/?id=3860981&size=640"
     },
     {
       userId: 2,
@@ -36,7 +36,7 @@ module.exports = {
       title: "Ready, Set, Go",
       description: "Derek Minor Ready, Set, Go",
       url: "http://www.derekminor.com/",
-      previewImage: "http://www.derekminor.com/"
+      previewImage: "https://i.scdn.co/image/ab67616d0000b273c744b828a5fcd9e10af70e4c"
     },
     {
       userId: 2,
@@ -44,7 +44,7 @@ module.exports = {
       title: "Making Me More",
       description: "Derek Minor Making Me More ft. Mel Washington",
       url: "http://www.derekminor.com/",
-      previewImage: "http://www.derekminor.com/"
+      previewImage: "https://i.scdn.co/image/ab67616d0000b273c744b828a5fcd9e10af70e4c"
     },
     {
       userId: 2,
@@ -52,7 +52,7 @@ module.exports = {
       title: "Until I'm Gone",
       description: "Derek Minor Until I'm gone ft. BJ the Chicago kid",
       url: "http://www.derekminor.com/",
-      previewImage: "http://www.derekminor.com/"
+      previewImage: "https://upload.wikimedia.org/wikipedia/en/7/7e/Derek_minor_reflection.jpg"
     },
     {
       userId: 1,
@@ -60,7 +60,7 @@ module.exports = {
       title: "Intro",
       description: "NF Intro",
       url: "https://www.nfrealmusic.com/",
-      previewImage: "https://www.nfrealmusic.com/"
+      previewImage: "https://m.media-amazon.com/images/I/71o6fTQjpcL._SL1500_.jpg"
     },
     {
       userId: 1,
@@ -68,7 +68,7 @@ module.exports = {
       title: "Mansion",
       description: "NF Mansion ft. Fleurie",
       url: "https://www.nfrealmusic.com/",
-      previewImage: "https://www.nfrealmusic.com/"
+      previewImage: "https://m.media-amazon.com/images/I/71o6fTQjpcL._SL1500_.jpg"
     },
     {
       userId: 1,
@@ -76,7 +76,7 @@ module.exports = {
       title: "Change",
       description: "NF Change",
       url: "https://www.nfrealmusic.com/",
-      previewImage: "https://www.nfrealmusic.com/"
+      previewImage: "https://upload.wikimedia.org/wikipedia/en/1/1b/NF_-_The_Search.png"
     },
     {
       userId: 1,
@@ -84,7 +84,7 @@ module.exports = {
       title: "Only",
       description: "NF Only ft. Sasha Sloan",
       url: "https://www.nfrealmusic.com/",
-      previewImage: "https://www.nfrealmusic.com/"
+      previewImage: "https://upload.wikimedia.org/wikipedia/en/1/1b/NF_-_The_Search.png"
     },
     {
       userId: 1,
@@ -92,7 +92,7 @@ module.exports = {
       title: "10 Feet Down",
       description: "NF 10 Feet Down",
       url: "https://www.nfrealmusic.com/",
-      previewImage: "https://www.nfrealmusic.com/"
+      previewImage: "https://www.pluggedin.com/wp-content/uploads/2020/01/NF__Perception__Large.jpg-1024x587.jpeg"
     },
     {
       userId: 3,
@@ -100,7 +100,7 @@ module.exports = {
       title: "Find Me",
       description: "The Siege",
       url: "https://soundcloud.com/theseigemusic",
-      previewImage: "https://soundcloud.com/theseigemusic"
+      previewImage: "https://f4.bcbits.com/img/a0707287908_10.jpg"
     },
     {
       userId: 3,
@@ -108,7 +108,7 @@ module.exports = {
       title: "Die For You",
       description: "The Siege Die For You",
       url: "https://soundcloud.com/theseigemusic",
-      previewImage: "https://soundcloud.com/theseigemusic"
+      previewImage: "https://f4.bcbits.com/img/a0707287908_10.jpg"
     },
     {
       userId: 3,
@@ -116,7 +116,7 @@ module.exports = {
       title: "Don't Fall Asleep",
       description: "The Siege Don't Fall Asleep",
       url: "https://soundcloud.com/theseigemusic",
-      previewImage: "https://soundcloud.com/theseigemusic"
+      previewImage: "https://i.scdn.co/image/ab67616d0000b2739073dc96b088adb0413cd4fc"
     },
     {
       userId: 3,
@@ -124,7 +124,7 @@ module.exports = {
       title: "I am Defiant",
       description: "The Siege I am Defiant",
       url: "https://soundcloud.com/theseigemusic",
-      previewImage: "https://soundcloud.com/theseigemusic"
+      previewImage: "https://i.ytimg.com/vi/3UWXRWTrHzo/maxresdefault.jpg"
     },
     {
       userId: 4,
@@ -132,7 +132,7 @@ module.exports = {
       title: "Epiphany",
       description: "Futuristic ft. NF Epiphany",
       url: "https://amap.to/futuristic/",
-      previewImage: "https://amap.to/futuristic/"
+      previewImage: "https://i.ytimg.com/vi/Oe_99OD1cKA/maxresdefault.jpg"
     },
     {
       userId: 3,
@@ -140,7 +140,7 @@ module.exports = {
       title: "Natalie Portman",
       description: "The Siege ft. Cheat Codes Natalie Portman",
       url: "https://soundcloud.com/theseigemusic",
-      previewImage: "https://soundcloud.com/theseigemusic"
+      previewImage: "https://f4.bcbits.com/img/a1233537512_16.jpg"
     },
     {
       userId: 5,
@@ -148,7 +148,7 @@ module.exports = {
       title: "Never Land",
       description: "Andy Mineo ft. Marz Never Land",
       url: "https://andymineo.com/",
-      previewImage: "https://andymineo.com/"
+      previewImage: "https://upload.wikimedia.org/wikipedia/en/6/6a/Never_land.jpg"
     },
     {
       userId: 5,
@@ -156,7 +156,7 @@ module.exports = {
       title: "You Can't Stop Me",
       description: "Andy Mineo You Can't Stop Me",
       url: "https://andymineo.com/",
-      previewImage: "https://andymineo.com/"
+      previewImage: "https://upload.wikimedia.org/wikipedia/en/6/6a/Never_land.jpg"
     },
     {
       userId: 6,
@@ -164,7 +164,7 @@ module.exports = {
       title: "Light 'Em Up",
       description: "Vo Williams ft. Robin Loxley Light 'Em Up",
       url: "https://www.vowilliams.com/",
-      previewImage: "https://www.vowilliams.com/"
+      previewImage: "https://i.ytimg.com/vi/pqDfg9rCYqA/maxresdefault.jpg"
     },
     {
       userId: 6,
@@ -172,7 +172,7 @@ module.exports = {
       title: "Automatic",
       description: "Vo Williams Automatic",
       url:  "https://www.vowilliams.com/",
-      previewImage:  "https://www.vowilliams.com/"
+      previewImage:  "https://i.ytimg.com/vi/7hsil0ZT9jE/maxresdefault.jpg"
     },
 
    ])

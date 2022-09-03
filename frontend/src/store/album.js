@@ -98,7 +98,7 @@ export const deleteAlbum = id => async dispatch => {
 
     if (response.ok) {
         await response.json();
-        dispatch(removeAlbum());
+        dispatch(removeAlbum(id));
         return response;
     }
 }
@@ -120,7 +120,6 @@ const albumReducer = (state = initialState, action) => {
         case GET_ALBUMS:
             newState = { ...state };
             action.albums.forEach(album => {
-                // console.log(album.id)
                 newState[album.id] = album;
             });
             return newState;

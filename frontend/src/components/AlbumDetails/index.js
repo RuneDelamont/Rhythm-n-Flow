@@ -42,9 +42,10 @@ function AlbumDetails() {
     const deleteAlbum = (e) => {
         e.preventDefault();
 
-        dispatch(albumActions.deleteAlbum(album.id));
-        history.push('/albums');
-
+        if(album.userId === user.id){
+            dispatch(albumActions.deleteAlbum(album.id));
+            history.push('/albums');
+        }
     }
 
     // edit album

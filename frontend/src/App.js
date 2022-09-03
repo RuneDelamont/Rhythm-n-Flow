@@ -31,23 +31,19 @@ function App() {
       <div className='content'>
         {isLoaded && (
           <Switch>
-            {/* <Route path="/login">
-            <LoginFormPage />
-          </Route> */}
-
             <Route exact path='/songs/:songId'>
               <SongDetails />
             </Route>
             <Route exact path='/albums/:albumId'>
               <AlbumDetails />
             </Route>
-            <Route path='/signup'>
+            <Route exact path='/signup'>
               <SignupFormPage />
             </Route>
-            <Route path='/songs'>
+            <Route exact path='/songs'>
               <SongsPage />
             </Route>
-            <Route path='/albums'>
+            <Route exact path='/albums'>
               <AlbumsPage />
             </Route>
             <Route exact path='/'>
