@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     dispatch(songActions.getAllSongs());
-    dispatch(albumActions.getAlbums());
+    dispatch(albumActions.getAllAlbums());
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true))
   }, [dispatch]);
 
@@ -35,10 +35,10 @@ function App() {
             <LoginFormPage />
           </Route> */}
 
-            <Route path='/songs/:songId'>
+            <Route exact path='/songs/:songId'>
               <SongDetails />
             </Route>
-            <Route path='/albums/:albumId'>
+            <Route exact path='/albums/:albumId'>
               <AlbumDetails />
             </Route>
             <Route path='/signup'>

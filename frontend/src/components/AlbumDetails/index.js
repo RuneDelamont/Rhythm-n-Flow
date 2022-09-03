@@ -9,10 +9,11 @@ function AlbumDetails() {
     // methods
     const dispatch = useDispatch();
     const { albumId } = useParams();
+    const albumIdnum = Number(albumId)
     const history = useHistory();
-    const album = useSelector(state => state.albums);
+    const album = useSelector(state => state.albums[albumIdnum]);
     const user = useSelector(state => state.session.user);
-    console.log(album.id, album.title, album.description, album.previewImage)
+    console.log(album.id, album.userId)
 
     // states
     const [disabled, setDisabled] = useState(true);
@@ -26,9 +27,10 @@ function AlbumDetails() {
     const updatePreviewImage = e => setPreviewImage(e.target.value);
 
     // initial data
-    useEffect(() => {
-        dispatch(albumActions.getAlbumById(albumId));
-    }, [dispatch]);
+    // useEffect(() => {
+    //     // dispatch(albumActions.getAllAlbums());
+    //     dispatch(albumActions.getAlbumById(albumId));
+    // }, [dispatch]);
 
     // disable/enable form
     const edit = () => {
@@ -60,6 +62,9 @@ function AlbumDetails() {
         edit();
 
     }
+    // return(
+    //     <h1>{album.title}</h1>
+    // )
 
     let albumform;
 
@@ -94,36 +99,34 @@ function AlbumDetails() {
                 </form>
             </div>
         )
+    }else{
+        albumform = (
+            <div className='album-details'>
+                <h1>Album details</h1>
+
+                <form className='edit-album-details'>
+                    <input
+                        type='text'
+                        value={title}
+                        disabled={disabled}
+                        onChange={updateTitle}
+                    ></input>
+                    <input
+                        type='text'
+                        value={description}
+                        disabled={disabled}
+                        onChange={updateDescription}
+                    ></input>
+                    <input
+                        type='text'
+                        value={previewImage}
+                        disabled={disabled}
+                        onChange={updatePreviewImage}
+                    ></input>
+                </form>
+            </div>
+        )
     }
-
-
-    albumform = (
-        <div className='album-details'>
-            <h1>Album details</h1>
-
-            <form className='edit-album-details' onSubmit={handleSubmit}>
-                <input
-                    type='text'
-                    value={title}
-                    disabled={disabled}
-                    onChange={updateTitle}
-                ></input>
-                <input
-                    type='text'
-                    value={description}
-                    disabled={disabled}
-                    onChange={updateDescription}
-                ></input>
-                <input
-                    type='text'
-                    value={previewImage}
-                    disabled={disabled}
-                    onChange={updatePreviewImage}
-                ></input>
-            </form>
-        </div>
-    )
-
     return albumform;
 }
 

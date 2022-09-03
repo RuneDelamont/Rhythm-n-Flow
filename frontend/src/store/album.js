@@ -19,7 +19,7 @@ const removeAlbum = (id) => {
     };
 };
 
-const getAllAlbums = (albums) => {
+const getAlbums = (albums) => {
     return {
         type: GET_ALBUMS,
         albums
@@ -33,13 +33,13 @@ const getAlbum = album => {
     };
 };
 
-export const getAlbums = () => async dispatch => {
+export const getAllAlbums = () => async dispatch => {
     const response = await csrfFetch('/albums');
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(getAllAlbums(data));
-        return Object.values(response);
+        dispatch(getAlbums(data.Albums));
+        return (response);
     }
 };
 
@@ -119,7 +119,8 @@ const albumReducer = (state = initialState, action) => {
             return newState;
         case GET_ALBUMS:
             newState = { ...state };
-            action.albums.Albums.forEach(album => {
+            action.albums.forEach(album => {
+                // console.log(album.id)
                 newState[album.id] = album;
             });
             return newState;
