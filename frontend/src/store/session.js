@@ -56,8 +56,11 @@ export const signup = user => async dispatch => {
 }
 
 export const createUser = (user) => async (dispatch) => {
-  const { images, image, username, email, password } = user;
+  // firstName, lastName, email, password, username
+  const { firstName, lastName, images, image, username, email, password } = user;
   const formData = new FormData();
+  formData.append("firstName", firstName);
+  formData.append("lastName", lastName)
   formData.append("username", username);
   formData.append("email", email);
   formData.append("password", password);
@@ -72,7 +75,7 @@ export const createUser = (user) => async (dispatch) => {
   // for single file
   if (image) formData.append("image", image);
 
-  const res = await csrfFetch(`/users/`, {
+  const res = await csrfFetch(`/users`, {
     method: "POST",
     headers: {
       "Content-Type": "multipart/form-data",

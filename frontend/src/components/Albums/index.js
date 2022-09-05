@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as albumActions from '../../store/album';
+import CreateAlbumModal from '../CreateAlbumModal';
 import './Albums.css';
 
 function AlbumsPage() {
@@ -32,7 +33,7 @@ function AlbumsPage() {
                         </div>
                         <div className='album-details'>
                             <div className='album-title'>
-                                <NavLink to={`/albums/${album.id}`}>{album.title}</NavLink>
+                                <NavLink className='album-title-nav' to={`/albums/${album.id}`}>{album.title}</NavLink>
                             </div>
                             <div className='album-description'>{album.description}</div>
                         </div>

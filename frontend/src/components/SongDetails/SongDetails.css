@@ -1,14 +1,15 @@
 
-.album-header{
+.song-header{
     text-align: center;
 }
 
-.album-button-divs {
+.song-button-divs {
     display: flex;
+    margin-bottom: 0.25rem;
     justify-content: center;
 }
 
-.album-details-content {
+.song-details-content {
     margin: 8rem;
     background-color: rgba(237, 237, 237, 0.943);
     border: 10px solid #333;
@@ -18,12 +19,12 @@
 }
 
 @media only screen and (max-width: 530px) {
-    .album-details-content {
+    .song-details-content {
        width: 100%;
     }
   }
 
-.edit-album-details{
+.edit-song-details{
     display: flex;
     flex-direction: row;
     flex: 1 1;
@@ -33,21 +34,36 @@
     align-content: stretch;
 }
 
-.edit-album-container {
+.edit-song-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-.edit-album-image-container{
+.edit-song-image-container{
     height: 80%;
     width: 80%;
     padding-bottom: 5%;
 }
 
-.edit-album-image{
+.edit-song-image{
     height: 100%;
     width: 100%;
     min-width: 64px;
+}
+
+.delete-song-button{
+    background-color: rgb(226, 40, 3);
+    border: 1px solid #666;
+    height: 32px;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.delete-song-button:hover {
+    border: 1px solid #1d1b1b;
 }

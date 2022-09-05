@@ -13,7 +13,12 @@ const getSongs = (songs) => {
     }
 };
 
-
+const getSong = (song) => {
+    return {
+        type: GET_SONG,
+        song
+    }
+}
 
 const setSong = song => {
     return {
@@ -42,7 +47,7 @@ export const getAllSongs = () => async dispatch => {
     if (response.ok) {
         const data = await response.json();
         dispatch(getSongs(data.Songs));
-        return (response);
+        return response;
     }
 }
 
@@ -52,7 +57,7 @@ export const getSongbyId = (id) => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(setSong(data));
+        dispatch(getSong(data));
         return response;
     }
 }
@@ -114,10 +119,10 @@ export const deleteSong = id => async dispatch => {
 };
 
 
-const initialState = {};
+let newState = {};
 
-const songReducer = (state = initialState, action) => {
-    let newState = state;
+const songReducer = (state = {}, action) => {
+
 
     switch (action.type) {
         case SET_SONG:
@@ -135,12 +140,15 @@ const songReducer = (state = initialState, action) => {
             });
             return newState;
         case GET_SONG:
-            newState = { ...state };
-            return newState[action.id];
+            return {
+                ...state,
+                [action.song.id] : action.song
+            }
         case UPDATE_SONG:
-            newState = { ...state };
-            newState[action.song.id] = action.song;
-            return newState;
+            return {
+                ...state,
+                [action.song.id]: action.song
+            };
         default:
             return state;
     }

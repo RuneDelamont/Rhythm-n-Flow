@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import profileLogo from '../../images/profilelogo.png';
 
 function ProfileButton({ user }) {
+    const history = useHistory();
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
 
@@ -26,12 +28,13 @@ function ProfileButton({ user }) {
 
     const logout = e => {
         e.preventDefault();
-        dispatch(sessionActions.logout());
+        dispatch(sessionActions.logout())
+        .then(history.push('/'));
     }
 
     return (
         <>
-                <img onClick={openMenu} className='logo profile-logo' src={profileLogo} />
+            <img onClick={openMenu} className='logo profile-logo' src={profileLogo} />
             {showMenu && (
                 <div className='user-dropdown'>
                     <div>{user.username}</div>

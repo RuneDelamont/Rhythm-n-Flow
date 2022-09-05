@@ -1,40 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Redirect, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as songActions from '../../store/song';
+import EditSongModal from '../EditSongModal';
+import './SongDetails.css'
 
 function SongDetails() {
 
     // methods
     const dispatch = useDispatch();
-    const { songId } = useParams();
+    let { songId } = useParams();
+    songId = Number(songId);
     const history = useHistory();
-    const song = useSelector(state => state.songs[songId]);
+    const songs = useSelector(state => state.songs);
     const user = useSelector(state => state.session.user);
-
-    // states
-    const [disabled, setDisabled] = useState(true);
-    const [title, setTitle] = useState(song.title);
-    const [description, setDescription] = useState(song.description);
-    const [url, setUrl] = useState(song.url);
-    const [previewImage, setPreviewImage] = useState(song.previewImage);
-
-    // onchange functions
-    const updateTitle = e => setTitle(e.target.value);
-    const updateDescription = e => setDescription(e.target.value);
-    const updateUrl = e => setUrl(e.target.value);
-    const updatePreviewImage = e => setPreviewImage(e.target.value);
+    const song = songs[Number(songId)];
 
     // initial data
     useEffect(() => {
-        dispatch(songActions.getSongbyId(songId))
-    }, [dispatch]);
+        // dispatch(songActions.getAllSongs());
+        dispatch(songActions.getSongbyId(songId));
+    }, [dispatch, songId]);
 
-    // disable/enable form
-    const edit = () => {
-        if (disabled === true) setDisabled(false);
-        else setDisabled(true);
-    }
 
     // delete song
     const deleteSong = (e) => {
@@ -46,114 +33,29 @@ function SongDetails() {
         }
     }
 
-    // edit song
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const songNum = Number(songId);
 
-        dispatch(songActions.putSong({
-            id: songNum,
-            albumId: song.albumId,
-            title,
-            description,
-            url,
-            previewImage
-        }));
-
-        edit();
-
-    }
-
-    let songform;
-
-    // if user owns song, allow delete and edit
-    if(song.userId === user.id){
-        songform = (
-            <div className='song-details'>
-                <h1>Song details</h1>
-                {(user.id === song.userId) &&
-                    (
-                        <div className='song-button-divs'>
-                            <button onClick={edit}>Edit Song</button>
-                            <button onClick={deleteSong}>Delete Song</button>
-                        </div>
-                    )
-                }
-                <form className='edit-song-details' onSubmit={handleSubmit}>
-                    <input
-                        type='text'
-                        value={title}
-                        disabled={disabled}
-                        onChange={updateTitle}
-                    >
-                    </input>
-                    <input
-                        type='text'
-                        value={description}
-                        disabled={disabled}
-                        onChange={updateDescription}
-                    >
-                    </input>
-                    <input
-                        type='text'
-                        value={url}
-                        disabled={disabled}
-                        onChange={updateUrl}
-                    >
-                    </input>
-                    <input
-                        type='text'
-                        value={previewImage}
-                        disabled={disabled}
-                        onChange={updatePreviewImage}
-                    >
-                    </input>
-
-                    <button type='submit'>Update song</button>
-                </form>
+    let songform = (
+        <div className='song-details-content'>
+            <h1 className='song-header'>{song.title}</h1>
+            {(user.id === song.userId) &&
+                (
+                    <div className='song-button-divs'>
+                        <EditSongModal song={songId} />
+                        <button className='delete-song-button'onClick={deleteSong}>Delete Song</button>
+                    </div>
+                )
+            }
+            <div className='edit-song-container'>
+                <div className='edit-song-image-container'>
+                    <img className='edit-song-image' src={song.previewImage} />
+                </div>
+                <div className='edit-song-details'>
+                    <p>{song.description}</p>
+                    <p>{song.url}</p>
+                </div>
             </div>
-        );
-
-    // else show data
-    }else{
-        songform = (
-            <div className='song-details'>
-                <h1>Song details</h1>
-                <form className='edit-song-details' onSubmit={handleSubmit}>
-                    <input
-                        type='text'
-                        value={title}
-                        disabled={disabled}
-                        onChange={updateTitle}
-                    >
-                    </input>
-                    <input
-                        type='text'
-                        value={description}
-                        disabled={disabled}
-                        onChange={updateDescription}
-                    >
-                    </input>
-                    <input
-                        type='text'
-                        value={url}
-                        disabled={disabled}
-                        onChange={updateUrl}
-                    >
-                    </input>
-                    <input
-                        type='text'
-                        value={previewImage}
-                        disabled={disabled}
-                        onChange={updatePreviewImage}
-                    >
-                    </input>
-
-                </form>
-            </div>
-        );
-    }
-
+        </div>
+    );
     return songform;
 }
 

@@ -1,0 +1,44 @@
+.create-buttons-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-button{
+    background-color: #f50;
+    border-color: #f50;
+    border-radius: 3px;
+    color: #fff;
+    position: relative;
+    padding: 0.4rem 1rem 0.4rem 1rem;
+    border: 1px solid #e5e5e5;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    height: 32px;
+    margin-bottom: 0.5rem;
+}
+
+.create-button:hover{
+    border-color: #1d1b1b;
+}
+
+.create-dropdown {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ccc;
+    border-top: 0;
+    border-radius: 04px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 700;
+    line-height: 1.5;
+    padding: 1em;
+    font-size: 1em;
+    cursor: pointer;
+    z-index: 1;
+    margin-top: 7.5rem;
+    flex-direction: column;
+    align-content: center;
+}

@@ -54,14 +54,12 @@ export const getAlbumById = id => async dispatch => {
 }
 
 export const addAlbum = album => async dispatch => {
-    const { title, description, previewImage } = album;
     const response = await csrfFetch('/albums', {
         method: 'POST',
-        body: JSON.stringify({
-            title,
-            description,
-            previewImage
-        })
+        headers:{
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(album)
     });
 
     if (response.ok) {
@@ -103,10 +101,10 @@ export const deleteAlbum = id => async dispatch => {
     }
 }
 
-const initialState = { };
+let newState = {};
 
-const albumReducer = (state = initialState, action) => {
-    let newState = {};
+const albumReducer = (state = {}, action) => {
+
 
     switch (action.type) {
         case SET_ALBUM:
@@ -124,8 +122,9 @@ const albumReducer = (state = initialState, action) => {
             });
             return newState;
         case GET_ALBUM:
-            newState = { ...state };
-            return newState[action.album.id]
+            return {...state,
+                [action.album.id] : action.album
+            }
         default:
             return state;
     }

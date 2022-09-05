@@ -6,24 +6,23 @@ import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormPage';
 import HomeButton from './HomeButton';
 import './Navigation.css';
-import cloudlogo from '../../images/cloudlogo.png';
+import CreateButton from '../CreateButton';
+import CreateAlbumModal from '../CreateAlbumModal';
 
 
 function Navigation({ isLoaded }) {
-    const user = useSelector(state => state.session.user);
 
+    const user = useSelector(state => state.session.user);
     let links;
-    // <div>
+
     if (user) {
         links = (
             <div className='header-root'>
                 <div className='nav-links-logged-in'>
-                    <NavLink className='home-button' exact to='/'>
-                        {/* <HomeButton /> */}
-                        <img title='Home' className='logo' src={cloudlogo} />
-                    </NavLink>
+                    <HomeButton />
                     <NavLink className='nav-link' to='/songs'>Songs</NavLink>
                     <NavLink className='nav-link' to='/albums'>Albums</NavLink>
+                    <CreateAlbumModal />
                     <ProfileButton user={user} />
                 </div>
             </div>
@@ -33,27 +32,17 @@ function Navigation({ isLoaded }) {
         links = (
             <div className='header-root'>
                 <div className='nav-links-logged-out'>
-                    <NavLink className='home-button' exact to='/'>
-                        {/* <HomeButton /> */}
-                        <img title='Home' className='logo' src={cloudlogo} />
-                    </NavLink>
-                    {/* <NavLink exact to='/'>Home</NavLink> */}
-                    {/* <HomeButton /> */}
+                    <HomeButton />
                     <NavLink className='nav-link' to='/songs'>Songs</NavLink>
                     <NavLink className='nav-link' to='/albums'>Albums</NavLink>
-                    {/* <NavLink className='nav-link' to='/signup'>
-                        <button className='button-sign-up'>Sign Up</button>
-                    </NavLink> */}
                     <SignupFormModal />
                     <LoginFormModal />
                 </div>
             </div>
         )
     }
-
     return (isLoaded && links);
 
-    // </div>
 }
 
 export default Navigation;

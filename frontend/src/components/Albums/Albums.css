@@ -31,3 +31,18 @@
 .album-details {
     margin-left: 5rem;
 }
+
+.album-title {
+    margin-bottom: 1rem;
+}
+
+.album-description {
+    font-weight: 500;
+    margin-left: .15rem;
+}
+
+.album-title-nav {
+    font-size: 1.75rem;
+    text-decoration: none;
+    color: blue;
+}

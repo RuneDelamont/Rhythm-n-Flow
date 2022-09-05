@@ -1,0 +1,51 @@
+.create-album-button{
+    background-color: #f50;
+    border-color: #f50;
+    border-radius: 3px;
+    color: #fff;
+    /* position: relative; */
+    padding: 0.4rem 1rem 0.4rem 1rem;
+    border: 1px solid #e5e5e5;
+    cursor: pointer;
+    margin-top: 0.15rem;
+    height: 32px;
+}
+
+.create-album-header {
+    text-align: center;
+}
+
+.create-album-button:hover{
+    border-color: #1d1b1b;
+}
+
+.create-album-header{
+    text-align: center;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.create-album-text {
+    padding: 0;
+    width: 100%;
+    /* margin: .75rem; */
+    margin-top: .75rem;
+    margin-bottom: .75rem;
+    height: 2.4rem;
+}
+
+.button-create-album-modal{
+    background-color: #f50;
+    border-color: #f50;
+    border-radius: 3px;
+    color: #fff;
+    position: relative;
+    padding: 0.4rem 1rem 0.4rem 1rem;
+    border: 1px solid #e5e5e5;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    width: 100%;
+    height: 3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}

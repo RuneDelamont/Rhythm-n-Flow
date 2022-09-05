@@ -1,0 +1,46 @@
+.edit-song-button {
+    background-color: #f50;
+    color: #fff;
+    padding: 0.4rem 1rem 0.4rem 1rem;
+    border: 1px solid #666;
+    border-radius: 3px;
+    height: 32px;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.edit-song-button:hover {
+    border: 1px solid #1d1b1b;
+}
+
+.edit-song-header {
+    text-align: center;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.edit-song-text-input {
+    padding: 0;
+    width: 100%;
+    margin-top: .75rem;
+    margin-bottom: .75rem;
+    height: 2.4rem;
+}
+
+.button-edit-song-modal {
+    background-color: #f50;
+    border-color: #f50;
+    border-radius: 3px;
+    color: #fff;
+    position: relative;
+    padding: 0.4rem 1rem 0.4rem 1rem;
+    border: 1px solid #e5e5e5;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    width: 100%;
+    height: 3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
