@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as albumActions from '../../store/album';
 import EditAlbumModal from '../EditAlbumModal';
@@ -14,6 +14,8 @@ function AlbumDetails() {
     const history = useHistory();
     const album = useSelector(state => state.albums[albumId]);
     const user = useSelector(state => state.session.user);
+    const albumSongs = album.Songs;
+
 
     // initial data
     useEffect(() => {
@@ -49,8 +51,23 @@ function AlbumDetails() {
                     <img className='edit-album-image' src={album.previewImage} />
                 </div>
                 <div className='edit-album-details'>
-                    <p>{album.description}</p>
+                    <h4 className='album-title'>{album.description}</h4>
                 </div>
+            </div>
+            <div className='album-songs'>
+                {albumSongs && albumSongs.map((song, idx) => {
+                    console.log(song);
+                    return (
+                        <NavLink key={song.id} to={`/songs/${song.id}`} className='album-song-title'>
+                        <div  className='album-song-row'>
+
+                                {idx + 1}. {song.title}
+
+                        </div>
+                        </NavLink>
+                    )
+                }
+                )}
             </div>
         </div>
     )

@@ -1,5 +1,4 @@
-
-.album-header{
+.album-header {
     text-align: center;
 }
 
@@ -19,11 +18,11 @@
 
 @media only screen and (max-width: 530px) {
     .album-details-content {
-       width: 100%;
+        width: 100%;
     }
-  }
+}
 
-.edit-album-details{
+.edit-album-details {
     display: flex;
     flex-direction: row;
     flex: 1 1;
@@ -40,14 +39,45 @@
     text-align: center;
 }
 
-.edit-album-image-container{
+.edit-album-image-container {
     height: 80%;
     width: 80%;
     padding-bottom: 5%;
 }
 
-.edit-album-image{
+.edit-album-image {
     height: 100%;
     width: 100%;
     min-width: 64px;
+}
+
+.album-title {
+    text-decoration: underline;
+}
+
+.album-songs {
+    display: flex;
+    flex-direction: column;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.album-song-row {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 0.5rem;
+    background-color: #333;
+    padding: .35rem;
+}
+
+.album-song-title {
+    color: azure;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 470px) {
+    .album-songs {
+        padding-left: 0;
+        padding-right: 0.7rem;
+    }
 }

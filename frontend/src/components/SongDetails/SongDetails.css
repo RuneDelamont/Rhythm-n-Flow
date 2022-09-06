@@ -20,18 +20,19 @@
 
 @media only screen and (max-width: 530px) {
     .song-details-content {
-       width: 100%;
+       width: 120%;
     }
   }
 
 .edit-song-details{
     display: flex;
     flex-direction: row;
-    flex: 1 1;
-    justify-content: space-around;
-    width: 50%;
-    flex-wrap: wrap;
-    align-content: stretch;
+    justify-content: center;
+    width: 80%;
+    flex-wrap: nowrap;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    background-color: #333;
 }
 
 .edit-song-container {
@@ -66,4 +67,10 @@
 
 .delete-song-button:hover {
     border: 1px solid #1d1b1b;
+}
+
+.song-description {
+    display: flex;
+    color: azure;
+    font-weight: bold;
 }
