@@ -3,7 +3,7 @@ import { useParams, useHistory, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as albumActions from '../../store/album';
 import EditAlbumModal from '../EditAlbumModal';
-import CreateSongModal from '../CreateSongModal/CreateSongForm';
+import CreateSongModal from '../CreateSongModal';
 import './AlbumDetails.css';
 
 function AlbumDetails() {
@@ -43,6 +43,7 @@ function AlbumDetails() {
                         {/* <CreateSongModal album={albumId} /> */}
                         <EditAlbumModal album={albumId} />
                         <button className='delete-album-button' onClick={deleteAlbum}>Delete Album</button>
+                        <CreateSongModal albumId={albumId} />
                     </div>
                 )
             }

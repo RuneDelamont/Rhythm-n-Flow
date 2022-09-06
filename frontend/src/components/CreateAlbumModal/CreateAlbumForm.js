@@ -28,7 +28,7 @@ function CreateAlbumForm({setShowModal}) {
         }))
             .then(setShowModal(false))
             .catch(async res => {
-                const data = res.json();
+                const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             })
     }
