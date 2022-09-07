@@ -42,6 +42,8 @@ function CreateSongForm({ setShowModal }) {
         }
 
         return dispatch(songActions.addSong(newSong, albumId))
+            .then(() => history.push(`/albums`))
+            .then(() => history.push(`/albums/${albumId}`))
             .then(() => dispatch(songActions.getAllSongs()))
             .then(() => setShowModal(false))
             .catch(async rejected => {
@@ -55,7 +57,7 @@ function CreateSongForm({ setShowModal }) {
         <form className='create-song-form' onSubmit={handleSubmit}>
             <h1 className='create-song-header'>Create Song</h1>
             <ul>
-                {errors.map((error, idx) => { return <li key={idx}>{error}</li>})}
+                {errors.map((error, idx) => { return <li key={idx}>{error}</li> })}
             </ul>
             {/* {!albumId && !userAlbums.length && (
                 <select className='create-song-text'>

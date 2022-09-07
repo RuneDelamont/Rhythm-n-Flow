@@ -11,6 +11,7 @@
     cursor: pointer;
     color: #fff;
     border-radius: 3px;
+    padding: 0.4rem 0.6rem 0.4rem 0.6rem;
 }
 
 .delete-album-button:hover {
@@ -20,7 +21,8 @@
 .edit-album-button {
     background-color: #f50;
     color: #fff;
-    padding: 0.4rem 1rem 0.4rem 1rem;
+    /* padding: 0.4rem 1rem 0.4rem 1rem; */
+    padding: 0.4rem 1.1rem 0.4rem 1.1rem;
     border: 1px solid #666;
     border-radius: 3px;
     height: 32px;
