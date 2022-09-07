@@ -1,0 +1,9 @@
+.not-found-container {
+    display: flex;
+    margin-top: 12rem;
+    background-color: #ccccccf5;
+    height: 420px;
+    width: 420px;
+    justify-content: center;
+    align-items: center;
+}

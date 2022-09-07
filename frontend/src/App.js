@@ -11,6 +11,7 @@ import SongsPage from './components/Songs';
 import AlbumsPage from './components/Albums';
 import SongDetails from './components/SongDetails';
 import AlbumDetails from './components/AlbumDetails';
+import NotFoundPage from './components/NotFoundPage';
 
 
 function App() {
@@ -48,6 +49,9 @@ function App() {
             </Route>
             <Route exact path='/'>
               <HomePage />
+            </Route>
+            <Route>
+              <NotFoundPage />
             </Route>
           </Switch>
         )}

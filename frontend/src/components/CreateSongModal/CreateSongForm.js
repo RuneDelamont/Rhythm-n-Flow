@@ -3,12 +3,13 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as songActions from '../../store/song';
 import * as albumActions from '../../store/album';
+import './CreateSong.css';
 
-function CreateSongForm({ setShowModal, album}) {
+function CreateSongForm({ setShowModal }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    // const { albumId } = useParams();
-    console.log(album);
+    const { albumId } = useParams();
+    // console.log(album);
     const user = useSelector(state => state.session.user);
     const albums = useSelector(state => Object.values(state.albums));
     // const defaultAlbum = albums.find(album => album.userId === user.id);
@@ -33,14 +34,15 @@ function CreateSongForm({ setShowModal, album}) {
         e.preventDefault();
         setErrors([]);
 
-        return dispatch(songActions.addSong({
-            // albumId: albumId,
+        const newSong = {
             title,
             description,
             url,
             imageUrl,
-            // previewImage: album.previewImage
-        }))
+        }
+
+        return dispatch(songActions.addSong(newSong, albumId))
+            .then(() => dispatch(songActions.getAllSongs()))
             .then(() => setShowModal(false))
             .catch(async rejected => {
                 const data = await rejected.json();
@@ -51,6 +53,7 @@ function CreateSongForm({ setShowModal, album}) {
 
     return (
         <form className='create-song-form' onSubmit={handleSubmit}>
+            <h1 className='create-song-header'>Create Song</h1>
             <ul>
                 {errors.map((error, idx) => { return <li key={idx}>{error}</li>})}
             </ul>
@@ -65,6 +68,7 @@ function CreateSongForm({ setShowModal, album}) {
                     })}
                 </select>
             )} */}
+
             <input
                 className='create-song-text'
                 type='text'

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as albumActions from '../../store/album';
+import * as songActions from '../../store/song';
 import EditAlbumModal from '../EditAlbumModal';
 import CreateSongModal from '../CreateSongModal';
 import './AlbumDetails.css';
@@ -21,6 +22,7 @@ function AlbumDetails() {
     // initial data
     useEffect(() => {
         dispatch(albumActions.getAlbumById(albumId));
+        dispatch(songActions.getAllSongs());
     }, [dispatch, albumId]);
 
 
@@ -44,7 +46,7 @@ function AlbumDetails() {
                         {/* <CreateSongModal album={albumId} /> */}
                         <EditAlbumModal album={albumId} />
                         <button className='delete-album-button' onClick={deleteAlbum}>Delete Album</button>
-                        <CreateSongModal album={album} />
+                        <CreateSongModal />
                     </div>
                 )
             }

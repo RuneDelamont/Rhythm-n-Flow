@@ -64,12 +64,12 @@ export const getSongbyId = (id) => async dispatch => {
 }
 
 
-export const addSong = (song, album) => async dispatch => {
+export const addSong = (song, albumId) => async dispatch => {
     // const { title, description, url, imageUrl } = song;
 
     // let album = albumActions.getAlbumById(albumId);
 
-    const response = await csrfFetch(`/songs/${album.id}`, {
+    const response = await csrfFetch(`/songs/${albumId}`, {
         method: 'POST',
         body: JSON.stringify(song)
     });
