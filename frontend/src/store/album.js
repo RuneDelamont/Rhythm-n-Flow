@@ -62,6 +62,8 @@ export const addAlbum = album => async dispatch => {
         body: JSON.stringify(album)
     });
 
+    if(!response) return null;
+
     if (response.ok) {
         const data = await response.json();
         dispatch(setAlbum(data));

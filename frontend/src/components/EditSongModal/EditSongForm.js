@@ -39,7 +39,7 @@ function EditSongForm({ setShowModal }) {
             url,
             previewImage
         }))
-            .then(setShowModal(false), history.push(`/songs/${songId}`))
+            .then(() => setShowModal(false))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
@@ -51,7 +51,7 @@ function EditSongForm({ setShowModal }) {
             <form onSubmit={handleSubmit}>
                 <h1 className='edit-song-header'>Edit Song</h1>
                 <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    {errors.map((error) => {return <li key={error}>{error}</li>})}
                 </ul>
                 <input
                     className='edit-song-text-input'

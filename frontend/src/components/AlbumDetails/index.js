@@ -14,7 +14,8 @@ function AlbumDetails() {
     const history = useHistory();
     const album = useSelector(state => state.albums[albumId]);
     const user = useSelector(state => state.session.user);
-    const albumSongs = album.Songs;
+    let albumSongs;
+    if(album.Songs) albumSongs = album.Songs;
 
 
     // initial data
@@ -59,7 +60,7 @@ function AlbumDetails() {
                 {albumSongs && albumSongs.map((song, idx) => {
                     console.log(song);
                     return (
-                        <NavLink key={song.id} to={`/songs/${song.id}`} className='album-song-title'>
+                        <NavLink key={song.id} to={`/songs/${song.id}`} className='album-details-title'>
                         <div  className='album-song-row'>
 
                                 {idx + 1}. {song.title}

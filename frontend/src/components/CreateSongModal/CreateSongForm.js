@@ -23,42 +23,42 @@ function CreateSongForm({ setShowModal, albumId }) {
     const createPreviewImage = e => setPreviewImage(e.target.value);
     const createUrl = e => setUrl(e.target.value);
 
-    // const handleSubmit = e => {
-    //     e.preventDefault();
-    //     setErrors([]);
-    //     let newSong;
+    const handleSubmit = e => {
+        e.preventDefault();
+        setErrors([]);
+        // let newSong;
 
-    //     // if (albumId) {
-    //     newSong = {
-    //         albumId,
-    //         title,
-    //         description,
-    //         url,
-    //         previewImage
-    //     }
-    //     // } else {
-    //     //     newSong = {
-    //     //         albumIdselect,
-    //     //         title,
-    //     //         description,
-    //     //         url,
-    //     //         previewImage
-    //     //     }
-    //     // }
+        // if (albumId) {
+        // newSong = {
+        //     albumId,
+        //     title,
+        //     description,
+        //     url,
+        //     previewImage
+        // }
+        // } else {
+        //     newSong = {
+        //         albumIdselect,
+        //         title,
+        //         description,
+        //         url,
+        //         previewImage
+        //     }
+        // }
 
-    //     return dispatch(songActions.addSong({
-    //         albumId,
-    //         title,
-    //         description,
-    //         url,
-    //         previewImage
-    //     }))
-    //         .then(setShowModal(false))
-    //         .catch(async res => {
-    //             const data = await res.json();
-    //             if (data && data.errors) setErrors(data.errors);
-    //         })
-    // }
+        return dispatch(songActions.addSong({
+            albumId,
+            title,
+            description,
+            url,
+            previewImage
+        }))
+            .then(setShowModal(false))
+            .catch(async res => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            })
+    }
 
     return (
         <form className='create-song-form' onSubmit={handleSubmit}>

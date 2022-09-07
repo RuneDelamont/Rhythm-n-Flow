@@ -30,18 +30,19 @@ function EditAlbumForm({ setShowModal }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([])
-        return dispatch(albumActions.putAlbum({
+
+         dispatch(albumActions.putAlbum({
             id: album.id,
             title,
             description,
             previewImage
         }))
-            .then(setShowModal(false))
+            .then(() => setShowModal(false))
             .catch(async (res) => {
                 const data = await res.json();
+                console.log(data)
                 if (data && data.errors) setErrors(data.errors);
             })
-
 
     }
 
@@ -50,7 +51,7 @@ function EditAlbumForm({ setShowModal }) {
             <form onSubmit={handleSubmit}>
                 <h1 className='edit-album'>Edit Album</h1>
                 <ul>
-                    {errors.map((error, idx) => { <li key={idx}>{error}</li> })}
+                    {errors.map((error, idx) => { return <li key={error}>{error}</li> })}
                 </ul>
                 <input
                     className='edit-album-text-input'

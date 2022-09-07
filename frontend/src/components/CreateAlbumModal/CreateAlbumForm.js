@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as albumActions from '../../store/album';
 
-function CreateAlbumForm({setShowModal}) {
+function CreateAlbumForm({ setShowModal }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector(state => state.session.user);
@@ -20,17 +20,22 @@ function CreateAlbumForm({setShowModal}) {
 
         e.preventDefault();
         setErrors([]);
-        return dispatch(albumActions.addAlbum({
+
+        const newAlbum = {
             userId: user.id,
             title,
             description,
             previewImage
-        }))
-            .then(setShowModal(false))
+        }
+
+        dispatch(albumActions.addAlbum(newAlbum))
+            .then(() => setShowModal(false))
+            .then(history.push('/albums'))
             .catch(async res => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
-            })
+            });
+
     }
 
     return (

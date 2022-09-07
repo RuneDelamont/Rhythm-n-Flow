@@ -50,7 +50,7 @@ function SongDetails() {
                     <img className='edit-song-image' src={song.previewImage} />
                 </div>
                 <div className='edit-song-details'>
-                    <h3 className='song-description'>{song.description}</h3>
+                    <h3 className='song-description-details'>{song.description}</h3>
                 </div>
             </div>
         </div>
