@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import * as albumActions from './album';
 
 const GET_SONGS = 'song/getSongs';
 const GET_SONG = 'song/getSong';
@@ -63,17 +64,14 @@ export const getSongbyId = (id) => async dispatch => {
 }
 
 
-export const addSong = (albumId, song) => async dispatch => {
-    const { title, description, url, imageUrl } = song;
+export const addSong = (song, album) => async dispatch => {
+    // const { title, description, url, imageUrl } = song;
 
-    const response = await csrfFetch(`/songs/${albumId}`, {
+    // let album = albumActions.getAlbumById(albumId);
+
+    const response = await csrfFetch(`/songs/${album.id}`, {
         method: 'POST',
-        body: JSON.stringify({
-            title,
-            description,
-            url,
-            imageUrl
-        })
+        body: JSON.stringify(song)
     });
 
     if(response.ok){

@@ -44,7 +44,7 @@ function AlbumDetails() {
                         {/* <CreateSongModal album={albumId} /> */}
                         <EditAlbumModal album={albumId} />
                         <button className='delete-album-button' onClick={deleteAlbum}>Delete Album</button>
-                        <CreateSongModal albumId={albumId} />
+                        <CreateSongModal album={album} />
                     </div>
                 )
             }
