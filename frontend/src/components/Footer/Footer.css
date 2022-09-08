@@ -1,0 +1,19 @@
+.profile-logos {
+    display: flex;
+}
+
+.git-hub-logo {
+    display: flex;
+    padding-right: 2rem;
+    align-items: center;
+}
+
+.linked-in-logo{
+    display: flex;
+    padding-right: 0.5rem;
+    align-items: center;
+}
+
+.logo-links {
+    color:white;
+}

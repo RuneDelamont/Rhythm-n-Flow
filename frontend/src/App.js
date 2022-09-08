@@ -12,6 +12,7 @@ import AlbumsPage from './components/Albums';
 import SongDetails from './components/SongDetails';
 import AlbumDetails from './components/AlbumDetails';
 import NotFoundPage from './components/NotFoundPage';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -55,6 +56,9 @@ function App() {
             </Route>
           </Switch>
         )}
+      </div>
+      <div className='footer'>
+          <Footer />
       </div>
     </div>
   );
