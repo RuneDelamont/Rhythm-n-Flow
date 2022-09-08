@@ -4,6 +4,7 @@ const { Op } = require('sequelize');
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { handleValidationErrors, forbiddenError, notFoundError, validateQuery, validateSong } = require('../../utils/validation');
 const { User, Song, Album, Comment, PlayList } = require('../../db/models');
+const cloudinary = require('cloudinary').v2
 const router = express.Router();
 
 

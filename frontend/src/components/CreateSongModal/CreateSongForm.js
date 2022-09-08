@@ -14,7 +14,7 @@ function CreateSongForm({ setShowModal }) {
     const albums = useSelector(state => Object.values(state.albums));
     // const defaultAlbum = albums.find(album => album.userId === user.id);
     const userAlbums = albums.filter(album => album.userId === user.id);
-    // const album = useSelector(state => Object.values(state.albums[albumId]));
+    const album = useSelector(state => Object.values(state.albums[albumId]));
     // console.log(albumId);
     // console.log(userAlbums);
 
@@ -22,7 +22,7 @@ function CreateSongForm({ setShowModal }) {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [url, setUrl] = useState('');
-    const [imageUrl, setimageUrl] = useState('')
+    const [imageUrl, setimageUrl] = useState(album.previewImage)
     // const [albumIdselect, setAlbumIdSelect] = useState(defaultAlbum.id)
 
     const createTitle = e => setTitle(e.target.value);
@@ -43,6 +43,8 @@ function CreateSongForm({ setShowModal }) {
 
         return dispatch(songActions.addSong(newSong, albumId))
             .then(() => dispatch(songActions.getAllSongs()))
+            .then(() => history.push(`/albums`))
+            .then(() => history.push(`/albums/${albumId}`))
             .then(() => setShowModal(false))
             .catch(async rejected => {
                 const data = await rejected.json();
@@ -51,11 +53,25 @@ function CreateSongForm({ setShowModal }) {
             })
     }
 
+    // const previewImageHandler = (e) => {
+    //     const file = e.target.files[0];
+    //     const reader = new FileReader();
+    //     const newFile = URL.createObjectURL(file)
+    //     console.log(newFile)
+    //     // console.log(file);
+    //     if (file) {
+    //         setimageUrl(newFile);
+    //         // setImageText(file.name);
+
+    //     }
+    // };
+
+
     return (
         <form className='create-song-form' onSubmit={handleSubmit}>
             <h1 className='create-song-header'>Create Song</h1>
             <ul>
-                {errors.map((error, idx) => { return <li key={idx}>{error}</li>})}
+                {errors.map((error, idx) => { return <li key={idx}>{error}</li> })}
             </ul>
             {/* {!albumId && !userAlbums.length && (
                 <select className='create-song-text'>
@@ -86,10 +102,15 @@ function CreateSongForm({ setShowModal }) {
             <input
                 className='create-song-text'
                 type='text'
-                placeholder='Song preview image'
-                value={imageUrl}
+                placeholder='Album Image by default'
+                value={album.previewImage}
                 onChange={createimageUrl}
             ></input>
+            {/* <input
+                type='file'
+                // value={previewImage}
+                onChange={previewImageHandler}
+            ></input> */}
             <input
                 className='create-song-text'
                 type='text'

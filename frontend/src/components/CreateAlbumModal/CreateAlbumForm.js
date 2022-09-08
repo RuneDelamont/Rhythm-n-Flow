@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as albumActions from '../../store/album';
+import defaultImage from '../../images/defaultImage.jpg'
 
 function CreateAlbumForm({ setShowModal }) {
     const dispatch = useDispatch();
@@ -10,11 +11,24 @@ function CreateAlbumForm({ setShowModal }) {
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [previewImage, setPreviewImage] = useState('');
+    const [previewImage, setPreviewImage] = useState(defaultImage);
 
     const createTitle = e => setTitle(e.target.value);
     const createDescription = e => setDescription(e.target.value);
     const createPreviewImage = e => setPreviewImage(e.target.value);
+
+    // const previewImageHandler = (e) => {
+    //     const file = e.target.files[0];
+    //     const reader = new FileReader();
+    //     const newFile = URL.createObjectURL(file)
+    //     console.log(newFile)
+    //     // console.log(file);
+    //     if (file) {
+    //         setPreviewImage(newFile);
+    //         // setImageText(file.name);
+
+    //     }
+    // };
 
     const handleSubmit = e => {
 
@@ -65,6 +79,11 @@ function CreateAlbumForm({ setShowModal }) {
                 value={previewImage}
                 onChange={createPreviewImage}
             ></input>
+            {/* <input
+                type='file'
+                // value={previewImage}
+                onChange={previewImageHandler}
+            ></input> */}
             <button className='button-create-album-modal' type='submit'>Create Album</button>
         </form>
     )
