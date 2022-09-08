@@ -9,14 +9,11 @@ function CreateSongForm({ setShowModal }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const { albumId } = useParams();
-    // console.log(album);
     const user = useSelector(state => state.session.user);
     const albums = useSelector(state => Object.values(state.albums));
-    // const defaultAlbum = albums.find(album => album.userId === user.id);
     const userAlbums = albums.filter(album => album.userId === user.id);
     const album = useSelector(state => Object.values(state.albums[albumId]));
-    // console.log(albumId);
-    // console.log(userAlbums);
+
 
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
@@ -50,7 +47,6 @@ function CreateSongForm({ setShowModal }) {
             .then(() => setShowModal(false))
             .catch(async rejected => {
                 const data = await rejected.json();
-                console.log(data.errors);
                 if (data && data.errors) setErrors(data.errors);
             })
     }
@@ -59,8 +55,7 @@ function CreateSongForm({ setShowModal }) {
     //     const file = e.target.files[0];
     //     const reader = new FileReader();
     //     const newFile = URL.createObjectURL(file)
-    //     console.log(newFile)
-    //     // console.log(file);
+
     //     if (file) {
     //         setimageUrl(newFile);
     //         // setImageText(file.name);

@@ -60,7 +60,6 @@ function AlbumDetails() {
             </div>
             <div className='album-songs'>
                 {albumSongs && albumSongs.map((song, idx) => {
-                    console.log(song);
                     return (
                         <NavLink key={song.id} to={`/songs/${song.id}`} className='album-details-title'>
                         <div  className='album-song-row'>

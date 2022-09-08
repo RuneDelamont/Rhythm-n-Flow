@@ -11,7 +11,7 @@ function CreateAlbumForm({ setShowModal }) {
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [previewImage, setPreviewImage] = useState(defaultImage);
+    const [previewImage, setPreviewImage] = useState('https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/catsoap.jpg');
 
     const createTitle = e => setTitle(e.target.value);
     const createDescription = e => setDescription(e.target.value);
