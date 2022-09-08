@@ -105,7 +105,7 @@ export const deleteAlbum = id => async dispatch => {
 
 let newState = {};
 
-const albumReducer = (state = {}, action) => {
+const albumReducer = (state = newState, action) => {
 
 
     switch (action.type) {

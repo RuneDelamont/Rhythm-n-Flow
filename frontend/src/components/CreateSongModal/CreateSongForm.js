@@ -42,6 +42,8 @@ function CreateSongForm({ setShowModal }) {
         }
 
         return dispatch(songActions.addSong(newSong, albumId))
+            .then(() => history.push(`/albums`))
+            .then(() => history.push(`/albums/${albumId}`))
             .then(() => dispatch(songActions.getAllSongs()))
             .then(() => history.push(`/albums`))
             .then(() => history.push(`/albums/${albumId}`))
