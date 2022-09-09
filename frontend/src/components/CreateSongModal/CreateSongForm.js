@@ -50,7 +50,7 @@ function CreateSongForm({ setShowModal }) {
             .then(() => setShowModal(false))
             .catch(async rejected => {
                 const data = await rejected.json();
-                console.log(data.errors);
+                // console.log(data.errors);
                 if (data && data.errors) setErrors(data.errors);
             })
     }
