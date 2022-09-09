@@ -17,6 +17,7 @@ function LoginForm() {
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
+        console.log(data);
       });
   }
 
@@ -25,7 +26,7 @@ function LoginForm() {
       <form onSubmit={handleSubmit}>
         <h1 className='log-in-header'>Log In</h1>
         <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          {errors.map((error) => { return <li key={error}>{error}</li> })}
         </ul>
         <input
           className='log-in-text-input'
