@@ -27,6 +27,7 @@ function SignupForm() {
             return dispatch(sessionActions.signup({ firstName, lastName, email, password, username }))
                 .catch(async (res) => {
                     const data = await res.json();
+                    console.log(data);
                     if (data && data.errors) setErrors(data.errors);
                 });
         }
@@ -83,13 +84,13 @@ function SignupForm() {
             />
             <input className='sign-up-text-input'
                 placeholder='Password'
-                type="text"
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
             <input className='sign-up-text-input'
                 placeholder='Confirm Password'
-                type="text"
+                type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmedPassword(e.target.value)}
             />
