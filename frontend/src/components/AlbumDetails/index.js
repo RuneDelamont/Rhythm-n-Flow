@@ -15,8 +15,9 @@ function AlbumDetails() {
     const history = useHistory();
     const album = useSelector(state => state.albums[albumId]);
     const user = useSelector(state => state.session.user);
-    let albumSongs;
-    if(album.Songs) albumSongs = album.Songs;
+    // let albumSongs;
+    // albumSongs = album.Songs;
+    // // const [songs, setSongs] =
 
 
     // initial data
@@ -25,19 +26,28 @@ function AlbumDetails() {
         dispatch(songActions.getAllSongs());
     }, [dispatch, albumId]);
 
+    useEffect(() => {
+
+    })
+
 
     // delete album
     const deleteAlbum = (e) => {
         e.preventDefault();
 
         if (album.userId === user.id) {
-            dispatch(albumActions.deleteAlbum(album.id));
-            history.push('/albums');
+            dispatch(albumActions.deleteAlbum(album.id))
+                .then(() => dispatch(songActions.getAllSongs()))
+                .then(() => history.push('/songs'))
+                .then(() => history.push('/albums'))
+
         }
     }
 
+    // if (!album) history.push('/albums');
 
     let albumform = (
+        album?
         <div className='album-details-content'>
             <h1 className='album-header'>{album.title}</h1>
             {(user.id === album.userId) &&
@@ -59,23 +69,27 @@ function AlbumDetails() {
                 </div>
             </div>
             <div className='album-songs'>
-                {albumSongs && albumSongs.map((song, idx) => {
+                {album.Songs && album.Songs.map((song, idx) => {
                     return (
                         <NavLink key={song.id} to={`/songs/${song.id}`} className='album-details-title'>
-                        <div  className='album-song-row'>
+                            <div className='album-song-row'>
 
                                 {idx + 1}. {song.title}
 
-                        </div>
+                            </div>
                         </NavLink>
                     )
                 }
                 )}
             </div>
         </div>
+        :
+        <></>
     )
-
     return albumform;
 }
+
+
+
 
 export default AlbumDetails;
