@@ -132,7 +132,7 @@ const songReducer = (state = newState, action) => {
             delete newState[action.id];
             return newState;
         case GET_SONGS:
-            newState = { ...state };
+            newState = { };
             action.songs.forEach(song => {
                 newState[song.id] = song;
             });

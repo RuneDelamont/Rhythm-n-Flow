@@ -118,7 +118,7 @@ const albumReducer = (state = newState, action) => {
             delete newState[action.id];
             return newState;
         case GET_ALBUMS:
-            newState = { ...state };
+            newState = { };
             action.albums.forEach(album => {
                 newState[album.id] = album;
             });
