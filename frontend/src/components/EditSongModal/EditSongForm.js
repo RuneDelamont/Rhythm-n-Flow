@@ -15,6 +15,7 @@ function EditSongForm({ setShowModal }) {
     const [title, setTitle] = useState(song.title);
     const [description, setDescription] = useState(song.description);
     const [url, setUrl] = useState(song.url);
+    const [imageUrl, setImageUrl] = useState(song.imageUrl);
     const [previewImage, setPreviewImage] = useState(song.previewImage);
 
     // onchange functions
@@ -37,6 +38,7 @@ function EditSongForm({ setShowModal }) {
             title,
             description,
             url,
+            imageUrl,
             previewImage
         }))
             .then(() => setShowModal(false))
@@ -46,12 +48,28 @@ function EditSongForm({ setShowModal }) {
             });
     }
 
+    const updateImageUrlHandler = (e) => {
+        const file = e.target.files[0];
+
+        if (file) {
+            setImageUrl(file);
+        }
+    };
+
+    const updateUrlHandler = e => {
+        const file = e.target.files[0];
+
+        if (file) {
+            setUrl(file)
+        }
+    }
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <h1 className='edit-song-header'>Edit Song</h1>
                 <ul>
-                    {errors.map((error) => {return <li key={error}>{error}</li>})}
+                    {errors.map((error) => { return <li key={error}>{error}</li> })}
                 </ul>
                 <input
                     className='edit-song-text-input'
@@ -65,18 +83,40 @@ function EditSongForm({ setShowModal }) {
                     value={description}
                     onChange={updateDescription}
                 />
-                <input
+                {/* <input
                     className='edit-song-text-input'
                     type='text'
                     value={url}
                     onChange={updateUrl}
-                />
-                <input
+                /> */}
+                <div className='update-song-file-upload'>
+                    <div className='song-update-upload'>
+                        <label htmlFor='update-song-image'>Update Image: </label>
+                        <input
+                            type='file'
+                            name='update-song-image'
+                            onChange={updateImageUrlHandler}
+                            required
+                        />
+                    </div>
+                    <div className='song-update-upload'>
+                        <label htmlFor='update-song-url'>Update song: </label>
+                        <input
+                            type='file'
+                            name='update-song-url'
+                            onChange={updateUrlHandler}
+                            required
+                        />
+                    </div>
+                </div>
+
+                {/* <input
                     className='edit-song-text-input'
                     type='text'
                     value={previewImage}
                     onChange={updatePreviewImage}
-                />
+                /> */}
+
                 <button className='button-edit-song-modal' type='submit'>Update Song</button>
             </form>
         </div>

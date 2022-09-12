@@ -18,13 +18,21 @@ function EditAlbumForm({ setShowModal }) {
     const [previewImage, setPreviewImage] = useState(album.previewImage);
 
     // onchange functions
-    const updateTitle = e => setTitle(e.target.value);
+    const updateTitle = e => {setTitle(e.target.value)};
     const updateDescription = e => setDescription(e.target.value);
     const updatePreviewImage = e => setPreviewImage(e.target.value);
 
     useEffect(() => {
         dispatch(albumActions.getAlbumById(albumId));
     }, [dispatch, albumId]);
+
+
+    const previewImageHandler = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setPreviewImage(file);
+        }
+    };
 
     // edit album
     const handleSubmit = (e) => {
@@ -40,7 +48,6 @@ function EditAlbumForm({ setShowModal }) {
             .then(() => setShowModal(false))
             .catch(async (res) => {
                 const data = await res.json();
-                console.log(data)
                 if (data && data.errors) setErrors(data.errors);
             })
 
@@ -65,12 +72,16 @@ function EditAlbumForm({ setShowModal }) {
                     value={description}
                     onChange={updateDescription}
                 />
-                <input
+                {/* <input
                     className='edit-album-text-input'
                     type='text'
                     value={previewImage}
                     onChange={updatePreviewImage}
-                />
+                /> */}
+                {/* <input
+                    type='file'
+                    onChange={previewImageHandler}
+                /> */}
                 <button className='button-edit-album-modal' type='submit'>Update Album</button>
             </form>
         </div>

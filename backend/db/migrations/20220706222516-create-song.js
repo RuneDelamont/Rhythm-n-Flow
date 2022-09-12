@@ -35,6 +35,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      imageUrl: {
+        type: Sequelize.STRING
+      },
       previewImage: {
         type: Sequelize.STRING
       },

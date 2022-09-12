@@ -39,30 +39,30 @@ function CreateSongForm({ setShowModal }) {
         }
 
         return dispatch(songActions.addSong(newSong, albumId))
-            .then(() => history.push(`/albums`))
-            .then(() => history.push(`/albums/${albumId}`))
             .then(() => dispatch(songActions.getAllSongs()))
             .then(() => history.push(`/albums`))
             .then(() => history.push(`/albums/${albumId}`))
             .then(() => setShowModal(false))
             .catch(async rejected => {
                 const data = await rejected.json();
-                // console.log(data.errors);
                 if (data && data.errors) setErrors(data.errors);
             })
     }
 
-    // const previewImageHandler = (e) => {
-    //     const file = e.target.files[0];
-    //     const reader = new FileReader();
-    //     const newFile = URL.createObjectURL(file)
+    const imageUrlHandler = (e) => {
+        const file = e.target.files[0];
 
-    //     if (file) {
-    //         setimageUrl(newFile);
-    //         // setImageText(file.name);
+        if (file) {
+            setimageUrl(file);
+        }
+    };
 
-    //     }
-    // };
+    const urlHandler = e => {
+        const file = e.target.files[0];
+        if (file) {
+            setUrl(file)
+        }
+    }
 
 
     return (
@@ -97,25 +97,41 @@ function CreateSongForm({ setShowModal }) {
                 value={description}
                 onChange={createDescription}
             ></input>
-            <input
+            {/* <input
                 className='create-song-text'
                 type='text'
                 placeholder='Album Image by default'
                 value={album.previewImage}
                 onChange={createimageUrl}
-            ></input>
-            {/* <input
-                type='file'
-                // value={previewImage}
-                onChange={previewImageHandler}
             ></input> */}
-            <input
+            <div className='create-song-file-upload'>
+                <div className='song-create-upload'>
+                    <label htmlFor='song-image'>Song image: </label>
+                    <input
+                        type='file'
+                        name='song-image'
+                        value={album.previewImage}
+                        onChange={imageUrlHandler}
+                    />
+                </div>
+                {/* <input
                 className='create-song-text'
                 type='text'
                 placeholder='song url'
                 value={url}
                 onChange={createUrl}
-            ></input>
+            ></input> */}
+                <div className='song-create-upload'>
+                    <label htmlFor='song-audio'>Song audio: </label>
+                    <input
+                        type='file'
+                        name='song-audio'
+                        // value={url}
+                        onChange={urlHandler}
+                    />
+                </div>
+
+            </div>
             <button className='button-create-song-modal' type='submit'>Create song</button>
         </form>
     )

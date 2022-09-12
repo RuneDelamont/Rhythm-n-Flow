@@ -5,80 +5,101 @@ const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth')
 const { handleValidationErrors, forbiddenError, notFoundError, validateQuery, validateSong } = require('../../utils/validation');
 const { User, Song, Album, Comment, PlayList } = require('../../db/models');
 const cloudinary = require('cloudinary').v2
+const {
+    singlePublicFileUpload,
+    multiplePublicFileUpload,
+    singlePrivateFileUpload,
+    multiplePrivateFileUpload,
+    retrievePrivateFile,
+    singleMulterUpload,
+    multipleMulterUpload,
+    multipleUpload
+}
+    = require('../../awsS3');
 const router = express.Router();
 
 
-router.post('/:albumId', requireAuth, validateSong, async (req, res, next) => {
-    const { albumId } = req.params;
-    const { user } = req;
-    let { title, description, url, imageUrl, previewImage } = req.body;
+router.post('/:albumId',
+    requireAuth,
+    multipleUpload([{ name: 'url'}, { name: 'imageUrl'}]),
+     validateSong,
+     async (req, res, next) => {
+        const { albumId } = req.params;
+        const { user } = req;
+        let { title, description, previewImage } = req.body;
+        const url = await singlePublicFileUpload(req.files.url[0])
+        const imageUrl = await singlePublicFileUpload(req.files.imageUrl[0]);
 
-    const album = await Album.findByPk(albumId);
+        const album = await Album.findByPk(albumId);
 
-    if(!album){
-        return next(notFoundError('Album'));
-    }
+        if (!album) {
+            return next(notFoundError('Album'));
+        }
 
 
-    if(album.userId === user.id){
-         const song = await album.createSong({
-            userId: album.userId,
-            title,
-            description,
-            url,
-            imageUrl,
-            previewImage: album.previewImage
-         });
-         res.status(201);
-         res.json(song);
-    }else{
-        return next(forbiddenError());
-    }
+        if (album.userId === user.id) {
+            const song = await album.createSong({
+                userId: album.userId,
+                title,
+                description,
+                url,
+                imageUrl,
+                previewImage: album.previewImage
+            });
+            res.status(201);
+            res.json(song);
+        } else {
+            return next(forbiddenError());
+        }
 
-});
+    });
 
-router.put('/:id', requireAuth, validateSong, async(req, res, next) => {
+router.put('/:id', requireAuth,
+multipleUpload([{ name: 'imageUrl'}, { name: 'url'}]),
+validateSong, async (req, res, next) => {
     const { id } = req.params;
     const { user } = req;
-    const { title, description, url, previewImage } = req.body;
+    const { title, description } = req.body;
+    const imageUrl = await singlePublicFileUpload(req.files.imageUrl[0]);
+    const url = await singlePublicFileUpload(req.files.url[0])
 
     const song = await Song.findByPk(id);
 
-    if(!song){
+    if (!song) {
         return next(notFoundError('Song'));
     }
 
-    if(user.id === song.userId){
+    if (user.id === song.userId) {
         await song.update({
             title,
             description,
             url,
-            previewImage
+            imageUrl
         });
 
         res.json(song);
-    }else{
+    } else {
         return next(forbiddenError());
     }
 });
 
-router.delete('/:id', requireAuth, async(req, res, next) => {
+router.delete('/:id', requireAuth, async (req, res, next) => {
     const { id } = req.params;
     const { user } = req;
 
     const song = await Song.findByPk(id);
 
-    if(!song){
+    if (!song) {
         return next(notFoundError('Song'));
     }
 
-    if(user.id === song.userId){
+    if (user.id === song.userId) {
         await song.destroy();
 
         res.json({
             message: "Successfully deleted"
         });
-    }else{
+    } else {
         return next(forbiddenError());
     }
 });
@@ -100,7 +121,7 @@ router.get('/:id', requireAuth, async (req, res, next) => {
         ]
     });
 
-    if(!song){
+    if (!song) {
         return next(notFoundError('Song'));
     }
 
@@ -113,20 +134,20 @@ router.get('/', validateQuery, async (req, res) => {
     const where = {};
 
     // convert page and size into limit and offset specs respectively
-    if(page) page = parseInt(page);
-    if(size) size = parseInt(size);
+    if (page) page = parseInt(page);
+    if (size) size = parseInt(size);
 
     // default pagination vals
-    if(!page || page < 0) page = 1;
-    if(!size || size < 0) size = 40;
-    if(page > 10) page = 10;
-    if(size > 40) size = 40;
+    if (!page || page < 0) page = 1;
+    if (!size || size < 0) size = 40;
+    if (page > 10) page = 10;
+    if (size > 40) size = 40;
 
     // pagination keys
     pagination.limit = size;
     pagination.offset = size * (page - 1);
 
-    if(createdAt) {
+    if (createdAt) {
         //convert query string to date
         newCreatedAt = new Date(createdAt);
 
@@ -149,11 +170,11 @@ router.get('/', validateQuery, async (req, res) => {
             }
         })
         */
-        where.createdAt = { [Op.between] : [before, after] }
+        where.createdAt = { [Op.between]: [before, after] }
     };
 
     // title query find anything like
-    if(title) where.title = { [Op.like] : `%${title}%` };
+    if (title) where.title = { [Op.like]: `%${title}%` };
 
     const songs = await Song.findAll({
         where,

@@ -41,13 +41,14 @@ function SongDetails() {
                 (
                     <div className='song-button-divs'>
                         <EditSongModal song={songId} />
-                        <button className='delete-song-button'onClick={deleteSong}>Delete Song</button>
+                        <button className='delete-song-button' onClick={deleteSong}>Delete Song</button>
                     </div>
                 )
             }
             <div className='edit-song-container'>
                 <div className='edit-song-image-container'>
-                    <img className='edit-song-image' src={song.previewImage} />
+                        <img className='edit-song-image' src={song.imageUrl} />
+
                 </div>
                 <div className='edit-song-details'>
                     <h3 className='song-description-details'>{song.description}</h3>

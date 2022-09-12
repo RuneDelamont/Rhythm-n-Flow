@@ -65,13 +65,22 @@ export const getSongbyId = (id) => async dispatch => {
 
 
 export const addSong = (song, albumId) => async dispatch => {
-    // const { title, description, url, imageUrl } = song;
+    const { title, description, url, imageUrl } = song;
 
     // let album = albumActions.getAlbumById(albumId);
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    if(url) formData.append('url', url);
+    if(imageUrl) formData.append('imageUrl', imageUrl);
 
     const response = await csrfFetch(`/api/songs/${albumId}`, {
         method: 'POST',
-        body: JSON.stringify(song)
+        headers: {
+            "Content-Type" : "multipart/form-data"
+        },
+        body: formData
+        // body: JSON.stringify(song)
     });
 
     if(response.ok){
@@ -82,16 +91,21 @@ export const addSong = (song, albumId) => async dispatch => {
 };
 
 export const putSong = song => async dispatch => {
-    const { id, title, description, url, previewImage } = song;
+    const { id, title, description, url, imageUrl } = song;
+
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    // formData.append('previewImage', previewImage)
+    if(imageUrl) formData.append('imageUrl', imageUrl);
+    if(url) formData.append('url', url);
 
     const response = await csrfFetch(`/api/songs/${id}`, {
         method: 'PUT',
-        body: JSON.stringify({
-            title,
-            description,
-            url,
-            previewImage
-        })
+        headers: {
+            "Content-Type" : "multipart/form-data"
+        },
+        body: formData
     });
 
     if (response.ok) {
@@ -124,9 +138,13 @@ const songReducer = (state = newState, action) => {
 
     switch (action.type) {
         case SET_SONG:
-            newState = { ...state };
-            newState[action.song.id] = action.song;
-            return newState;
+            // newState = { ...state };
+            // newState[action.song.id] = action.song;
+            // return newState;
+            return {
+                ...state,
+                [action.song.id]: action.song
+            }
         case REMOVE_SONG:
             newState = { ...state };
             delete newState[action.id];

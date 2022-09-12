@@ -17,18 +17,12 @@ function CreateAlbumForm({ setShowModal }) {
     const createDescription = e => setDescription(e.target.value);
     const createPreviewImage = e => setPreviewImage(e.target.value);
 
-    // const previewImageHandler = (e) => {
-    //     const file = e.target.files[0];
-    //     const reader = new FileReader();
-    //     const newFile = URL.createObjectURL(file)
-    //     console.log(newFile)
-    //     // console.log(file);
-    //     if (file) {
-    //         setPreviewImage(newFile);
-    //         // setImageText(file.name);
-
-    //     }
-    // };
+    const previewImageHandler = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setPreviewImage(file);
+        }
+    };
 
     const handleSubmit = e => {
 
@@ -72,18 +66,18 @@ function CreateAlbumForm({ setShowModal }) {
                 value={description}
                 onChange={createDescription}
             ></input>
-            <input
+            {/* <input
                 className='create-album-text'
                 type='text'
                 placeholder='Album preview Image'
                 value={previewImage}
                 onChange={createPreviewImage}
-            ></input>
-            {/* <input
+            ></input> */}
+            <input
                 type='file'
                 // value={previewImage}
                 onChange={previewImageHandler}
-            ></input> */}
+            ></input>
             <button className='button-create-album-modal' type='submit'>Create Album</button>
         </form>
     )

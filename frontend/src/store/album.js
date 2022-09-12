@@ -54,15 +54,20 @@ export const getAlbumById = id => async dispatch => {
 }
 
 export const addAlbum = album => async dispatch => {
+    const { title, description, previewImage } = album;
+
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    if(previewImage) formData.append('previewImage', previewImage);
+
     const response = await csrfFetch('/api/albums', {
         method: 'POST',
         headers:{
-            'Content-Type' : 'application/json'
+            'Content-Type' : 'multipart/form-data'
         },
-        body: JSON.stringify(album)
+        body: formData
     });
-
-    if(!response) return null;
 
     if (response.ok) {
         const data = await response.json();
@@ -74,13 +79,17 @@ export const addAlbum = album => async dispatch => {
 export const putAlbum = album => async dispatch => {
     const { id, title, description, previewImage } = album;
 
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    // if(previewImage) formData.append('previewImage', previewImage);
+
     const response = await csrfFetch(`/api/albums/${id}`, {
         method: 'PUT',
-        body: JSON.stringify({
-            title,
-            description,
-            previewImage
-        })
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        },
+        body: formData
     });
 
     if (response.ok) {

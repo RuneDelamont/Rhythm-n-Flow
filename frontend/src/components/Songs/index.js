@@ -32,7 +32,7 @@ function SongsPage() {
                     <div className='song-row' key={song.id}>
                         <div className='song-image-container'>
                             <div className='song-image-content'>
-                                <img className='song-image' src={song.previewImage} alt={song.title} />
+                                <img className='song-image' src={song.imageUrl} alt={song.title} />
                             </div>
                         </div>
                         <div className='song-details'>
