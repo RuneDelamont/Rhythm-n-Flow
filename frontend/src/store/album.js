@@ -82,7 +82,7 @@ export const putAlbum = album => async dispatch => {
     const formData = new FormData();
     formData.append('title', title);
     formData.append('description', description);
-    // if(previewImage) formData.append('previewImage', previewImage);
+    if(previewImage) formData.append('previewImage', previewImage);
 
     const response = await csrfFetch(`/api/albums/${id}`, {
         method: 'PUT',

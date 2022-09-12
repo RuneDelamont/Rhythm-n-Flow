@@ -78,10 +78,10 @@ function EditAlbumForm({ setShowModal }) {
                     value={previewImage}
                     onChange={updatePreviewImage}
                 /> */}
-                {/* <input
+                <input
                     type='file'
                     onChange={previewImageHandler}
-                /> */}
+                />
                 <button className='button-edit-album-modal' type='submit'>Update Album</button>
             </form>
         </div>

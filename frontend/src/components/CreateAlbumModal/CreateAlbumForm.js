@@ -77,6 +77,7 @@ function CreateAlbumForm({ setShowModal }) {
                 type='file'
                 // value={previewImage}
                 onChange={previewImageHandler}
+                required
             ></input>
             <button className='button-create-album-modal' type='submit'>Create Album</button>
         </form>

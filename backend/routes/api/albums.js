@@ -62,7 +62,7 @@ router.put('/:id', requireAuth,
         const { user } = req;
         const { id } = req.params;
         const { title, description } = req.body;
-        // const previewImage = singlePublicFileUpload(req.file);
+        const previewImage = await singlePublicFileUpload(req.file);
         const album = await Album.findByPk(id);
 
         if (!album) {
@@ -73,7 +73,7 @@ router.put('/:id', requireAuth,
             await album.update({
                 title,
                 description,
-                // previewImage
+                previewImage
             });
 
             res.json(album);
