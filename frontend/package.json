@@ -19,6 +19,7 @@
     "redux-thunk": "^2.4.1"
   },
   "scripts": {
+    "render-postbuild": "npm run build --prefix frontend",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
