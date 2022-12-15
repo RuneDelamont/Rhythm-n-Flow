@@ -17,6 +17,12 @@ module.exports = {
         require: true,
         rejectUnauthorized: false
       }
+    },
+    production: {
+      // ...
+      define: {         // define schema here
+        schema: process.env.SCHEMA
+      }
     }
   }
 }
