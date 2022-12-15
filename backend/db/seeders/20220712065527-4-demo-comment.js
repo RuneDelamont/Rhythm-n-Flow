@@ -2,7 +2,6 @@
 
 
 let options = {};
-options.tableName = 'Comments';
 
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
@@ -66,7 +65,8 @@ module.exports = {
       songId: 21,
       body: 'Automatic like!'
     },
-   ])
+   ]);
+   options.tableName = 'Comments';
   },
 
   async down (queryInterface, Sequelize) {

@@ -2,7 +2,6 @@
 const bcrypt = require('bcryptjs');
 
 let options = {};
-options.tableName = 'Users';
 
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
@@ -85,6 +84,7 @@ module.exports = {
         previewImage: "www.previewImage2.com"
       }
     ], {});
+    options.tableName = 'Users';
   },
 
   async down(queryInterface, Sequelize) {

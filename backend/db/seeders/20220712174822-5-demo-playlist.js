@@ -1,7 +1,6 @@
 'use strict';
 
 let options = {};
-options.tableName = 'Playlists';
 
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
@@ -30,7 +29,8 @@ module.exports = {
         name: "Default Name",
         previewImage: "http://www.previewImage.com"
       }
-    ])
+    ]);
+    options.tableName = 'Playlists';
   },
 
   async down (queryInterface, Sequelize) {

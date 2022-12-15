@@ -1,7 +1,7 @@
 'use strict';
 
 let options = {};
-options.tableName = 'Albums';
+
 
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
@@ -95,7 +95,8 @@ module.exports = {
         previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/VoWilliamsAutomatic.jpg"
       }
 
-    ])
+    ]);
+    options.tableName = 'Albums';
   },
 
   async down (queryInterface, Sequelize) {
