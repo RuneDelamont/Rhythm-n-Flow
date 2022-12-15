@@ -1,15 +1,14 @@
 'use strict';
 
 let options = {};
-
-
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Albums', [
+    options.tableName = 'Albums';
+    await queryInterface.bulkInsert(options, [
       {
         title: 'Perception',
         userId: 1,
@@ -95,8 +94,7 @@ module.exports = {
         previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/VoWilliamsAutomatic.jpg"
       }
 
-    ]);
-    options.tableName = 'Albums';
+    ])
   },
 
   async down (queryInterface, Sequelize) {
