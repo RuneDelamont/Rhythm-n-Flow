@@ -2,13 +2,14 @@
 const { query } = require("express-validator");
 
 let options = {};
+options.tableName = 'Songs';
+
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    options.tableName = 'Songs';
    await queryInterface.bulkInsert('Songs', [
     {
       userId: 1,

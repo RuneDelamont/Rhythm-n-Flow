@@ -2,13 +2,14 @@
 
 
 let options = {};
+options.tableName = 'Comments';
+
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    options.tableName = 'Comments';
    await queryInterface.bulkInsert('Comments', [
     {
       userId: 2,
