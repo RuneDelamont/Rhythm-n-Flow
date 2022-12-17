@@ -205,6 +205,6 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     options.tableName = 'Songs';
-    return queryInterface.bulkDelete('Songs', null, {})
+    return queryInterface.bulkDelete(options)
   }
 };

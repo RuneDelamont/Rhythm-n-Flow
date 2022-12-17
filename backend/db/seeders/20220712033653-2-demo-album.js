@@ -99,6 +99,6 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     options.tableName = 'Albums';
-    return queryInterface.bulkDelete('Albums', null, {});
+    return queryInterface.bulkDelete(options);
   }
 };

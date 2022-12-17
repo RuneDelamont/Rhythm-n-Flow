@@ -84,12 +84,12 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('password3'),
         previewImage: "www.previewImage2.com"
       }
-    ], {});
+    ]);
   },
 
   down: (queryInterface, Sequelize) => {
     options.tableName = 'Users';
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options, null, {});
+    return queryInterface.bulkDelete(options);
   }
 };

@@ -70,6 +70,6 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     options.tableName = 'Comments';
-    return queryInterface.bulkDelete('Comments', null, {});
+    return queryInterface.bulkDelete(options);
   }
 };
