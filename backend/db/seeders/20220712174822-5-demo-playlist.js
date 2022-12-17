@@ -6,9 +6,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  up: (queryInterface, Sequelize) => {
     options.tableName = 'Playlists';
-    await queryInterface.bulkInsert(options, [
+    return queryInterface.bulkInsert(options, [
       {
         userId: 7,
         name: "Cardio",
@@ -32,8 +32,8 @@ module.exports = {
     ])
   },
 
-  async down (queryInterface, Sequelize) {
+  down: (queryInterface, Sequelize) => {
     options.tableName = 'Playlists';
-    await queryInterface.bulkDelete('Playlists', null, {});
+    return queryInterface.bulkDelete('Playlists', null, {});
   }
 };
