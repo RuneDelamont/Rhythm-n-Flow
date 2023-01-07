@@ -88,8 +88,10 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    options.tableName = 'Users';
+    options.truncate = true;
+    options.cascade = true;
+    options.restartIdentity = true;
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options);
+    return queryInterface.bulkDelete('Users', null, options);
   }
 };

@@ -51,11 +51,8 @@ module.exports = {
       }
     }, options);
   },
-  async down (queryInterface, Sequelize) {
-    options.truncate = true;
-    options.cascade = true;
-    options.restartIdentity = true;
-    const Op = Sequelize.Op;
-    return queryInterface.bulkDelete('Users', null, options);
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('Users', options);
   }
+  
 };
