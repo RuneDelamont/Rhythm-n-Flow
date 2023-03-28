@@ -1,8 +1,8 @@
-# Soundcloud
+# Rhythm n’ Flow
 
 ## Link 
 
-[SoundCloud Clone](https://soundcloud-nmw8.onrender.com)
+[Rhythm n’ Flow](https://soundcloud-nmw8.onrender.com)
 
 This is a clone of SoundCloud the implementation steps are fairly simple
 
