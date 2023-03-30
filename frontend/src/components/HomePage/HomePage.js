@@ -6,8 +6,8 @@ function HomePage () {
     return (
         <div className='home-container'>
 
-            <h1 className='home-title'>SoundCloud</h1>
-            <h3>Discover more with SoundCloud</h3>
+            <h1 className='home-title'>Rhythm n' Flow</h1>
+            <h3>Get into the Flow</h3>
         </div>
     )
 }

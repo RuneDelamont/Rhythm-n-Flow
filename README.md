@@ -4,7 +4,7 @@
 
 [Rhythm n’ Flow](https://soundcloud-nmw8.onrender.com)
 
-This is a clone of SoundCloud the implementation steps are fairly simple
+Rhythm n' Flow.  Create your own songs and album
 
 1. Pull the project
 
