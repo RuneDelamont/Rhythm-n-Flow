@@ -15,7 +15,7 @@ module.exports = {
       albumId: 1,
       title: "Outcast",
       description: "NF's Outcast",
-      url: "https://www.nfrealmusic.com/",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NF_-_Outcast_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NFPerception.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NFPerception.jpg"
     },
@@ -24,7 +24,7 @@ module.exports = {
       albumId: 2,
       title: "Wait",
       description: "Wait by NF",
-      url: "https://www.nfrealmusic.com/",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NF_-_Wait_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NFMansion.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NFMansion.jpg"
     },
@@ -33,7 +33,7 @@ module.exports = {
       albumId: 3,
       title: "Astronaut",
       description: "Astronaut by Derek Minor",
-      url: "http://www.derekminor.com/",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/Astronaut_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/DerekMinorAstronaut.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/DerekMinorAstronaut.jpg"
     },
@@ -42,7 +42,7 @@ module.exports = {
       albumId: 4,
       title: "Ready, Set, Go",
       description: "Derek Minor Ready, Set, Go",
-      url: "http://www.derekminor.com/",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/Derek_Minor_-_Ready_Set_Go_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/DerekMinorMinorville.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/DerekMinorMinorville.jpg"
     },
@@ -51,7 +51,7 @@ module.exports = {
       albumId: 4,
       title: "Making Me More",
       description: "Derek Minor Making Me More ft. Mel Washington",
-      url: "http://www.derekminor.com/",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/Derek_Minor_-_Making_Me_More_ft_Me_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/DerekMinorMinorville.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/DerekMinorMinorville.jpg"
     },
@@ -60,7 +60,7 @@ module.exports = {
       albumId: 5,
       title: "Until I'm Gone",
       description: "Derek Minor Until I'm gone ft. BJ the Chicago kid",
-      url: "http://www.derekminor.com/",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/Until_Im_Gone_feat_BJ_the_Chicag_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/DerekMinorReflection.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/DerekMinorReflection.jpg"
     },
@@ -69,7 +69,7 @@ module.exports = {
       albumId: 2,
       title: "Intro",
       description: "NF Intro",
-      url: "https://www.nfrealmusic.com/",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/Intro_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NFMansion.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NFMansion.jpg"
     },
@@ -78,7 +78,7 @@ module.exports = {
       albumId: 2,
       title: "Mansion",
       description: "NF Mansion ft. Fleurie",
-      url: "https://www.nfrealmusic.com/",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NF_-_Mansion_Audio_ft_Fleurie_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NFMansion.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NFMansion.jpg"
     },
@@ -87,7 +87,7 @@ module.exports = {
       albumId: 6,
       title: "Change",
       description: "NF Change",
-      url: "https://www.nfrealmusic.com/",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/Change_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NFTheSearch.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NFTheSearch.jpg"
     },
@@ -96,7 +96,7 @@ module.exports = {
       albumId: 6,
       title: "Only",
       description: "NF Only ft. Sasha Sloan",
-      url: "https://www.nfrealmusic.com/",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NF_Sasha_Sloan_-_Only_Audio_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NFTheSearch.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NFTheSearch.jpg"
     },
@@ -105,7 +105,7 @@ module.exports = {
       albumId: 1,
       title: "10 Feet Down",
       description: "NF 10 Feet Down",
-      url: "https://www.nfrealmusic.com/",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/10_Feet_Down_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NFPerception.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/NFPerception.jpg"
     },
@@ -114,7 +114,7 @@ module.exports = {
       albumId: 7,
       title: "Find Me",
       description: "The Siege",
-      url: "https://soundcloud.com/theseigemusic",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/Find_Me_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/TheSiegeDuality.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/TheSiegeDuality.jpg"
     },
@@ -123,7 +123,7 @@ module.exports = {
       albumId: 7,
       title: "Die For You",
       description: "The Siege Die For You",
-      url: "https://soundcloud.com/theseigemusic",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/The_Seige_-_Die_For_You_Official_A_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/TheSiegeDuality.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/TheSiegeDuality.jpg"
     },
@@ -132,7 +132,7 @@ module.exports = {
       albumId: 8,
       title: "Don't Fall Asleep",
       description: "The Siege Don't Fall Asleep",
-      url: "https://soundcloud.com/theseigemusic",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/Dont_Fall_Asleep_-_The_Seige_Ex_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/TheSiegeAwake.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/TheSiegeAwake.jpg"
     },
@@ -141,7 +141,7 @@ module.exports = {
       albumId: 9,
       title: "I am Defiant",
       description: "The Siege I am Defiant",
-      url: "https://soundcloud.com/theseigemusic",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/I_Am_Defiant_-_The_Seige_Explici_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/TheSiegeIAmDefiant.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/TheSiegeIAmDefiant.jpg"
     },
@@ -150,7 +150,7 @@ module.exports = {
       albumId: 10,
       title: "Epiphany",
       description: "Futuristic ft. NF Epiphany",
-      url: "https://amap.to/futuristic/",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/Epiphany_feat_NF_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/FuturisticEpiphany.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/FuturisticEpiphany.jpg"
     },
@@ -159,7 +159,7 @@ module.exports = {
       albumId: 11,
       title: "Natalie Portman",
       description: "The Siege ft. Cheat Codes Natalie Portman",
-      url: "https://soundcloud.com/theseigemusic",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/Natalie_Portman_feat_Cheat_Codes_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/TheSiegeNataliePortman.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/TheSiegeNataliePortman.jpg"
     },
@@ -168,7 +168,7 @@ module.exports = {
       albumId: 12,
       title: "Never Land",
       description: "Andy Mineo ft. Marz Never Land",
-      url: "https://andymineo.com/",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/Andy_Mineo_-_Never_Land_ft_Marz_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/AndyMineoNeverland.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/AndyMineoNeverland.jpg"
     },
@@ -177,7 +177,7 @@ module.exports = {
       albumId: 12,
       title: "You Can't Stop Me",
       description: "Andy Mineo You Can't Stop Me",
-      url: "https://andymineo.com/",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/Andy_Mineo_-_You_Cant_Stop_Me_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/AndyMineoNeverland.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/AndyMineoNeverland.jpg"
     },
@@ -186,7 +186,7 @@ module.exports = {
       albumId: 13,
       title: "Light 'Em Up",
       description: "Vo Williams ft. Robin Loxley Light 'Em Up",
-      url: "https://www.vowilliams.com/",
+      url: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/Light_Em_Up_-_Vo_Williams_ft_Robi_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/VoWilliamsLightEmUp.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/VoWilliamsLightEmUp.jpg"
     },
@@ -195,7 +195,7 @@ module.exports = {
       albumId: 14,
       title: "Automatic",
       description: "Vo Williams Automatic",
-      url:  "https://www.vowilliams.com/",
+      url:  "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/Automatic_(getmp3.pro).mp3",
       imageUrl: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/VoWilliamsAutomatic.jpg",
       previewImage: "https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/VoWilliamsAutomatic.jpg"
     },
