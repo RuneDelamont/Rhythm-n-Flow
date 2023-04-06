@@ -40,3 +40,10 @@ body{
     justify-content: center;
     flex: 1;
 }
+
+.player{
+    display: flex;
+    position: fixed;
+    width: 100%;
+    bottom: 46px;
+}

@@ -12,6 +12,7 @@ import AlbumsPage from './components/Albums';
 import SongDetails from './components/SongDetails';
 import AlbumDetails from './components/AlbumDetails';
 import NotFoundPage from './components/NotFoundPage';
+import Player from  './components/AudioPlayer';
 import Footer from './components/Footer';
 
 
@@ -56,6 +57,11 @@ function App() {
             </Route>
           </Switch>
         )}
+      </div>
+      <div className='player'>
+        <Player>
+          
+        </Player>
       </div>
       <div className='footer'>
           <Footer />
