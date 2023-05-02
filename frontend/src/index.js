@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import { ModalProvider } from './context/Modal';
+import SongProvider from './context/Song';
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session'
@@ -24,9 +25,11 @@ const Root = () => {
   return (
     <Provider store={store}>
       <ModalProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <SongProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </SongProvider>
       </ModalProvider>
     </Provider>
   );

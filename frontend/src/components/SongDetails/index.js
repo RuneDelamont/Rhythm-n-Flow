@@ -3,6 +3,8 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as songActions from '../../store/song';
 import EditSongModal from '../EditSongModal';
+// import { songSRC, setSongSRC } from '../../context/Song';
+import { useSong } from '../../context/Song';
 import './SongDetails.css'
 
 function SongDetails() {
@@ -15,6 +17,7 @@ function SongDetails() {
     const songs = useSelector(state => state.songs);
     const user = useSelector(state => state.session.user);
     const song = songs[Number(songId)];
+    const { songSRC, setSongSRC } = useSong();
 
     // initial data
     useEffect(() => {
@@ -47,7 +50,14 @@ function SongDetails() {
             }
             <div className='edit-song-container'>
                 <div className='edit-song-image-container'>
-                        <img className='edit-song-image' src={song.imageUrl} />
+                    <img className='edit-song-image'
+                        src={song.imageUrl}
+                        onClick={() => {
+                                console.log(songSRC);
+                                setSongSRC(song.url);
+                            }
+                        }
+                    />
 
                 </div>
                 <div className='edit-song-details'>
