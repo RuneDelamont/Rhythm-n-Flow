@@ -17,6 +17,7 @@ function SongDetails() {
     const songs = useSelector(state => state.songs);
     const user = useSelector(state => state.session.user);
     const song = songs[Number(songId)];
+    const [ playOpacity, setPlayOpacity ] = useState(0);
     const { songSRC, setSongSRC } = useSong();
 
     // initial data
@@ -49,16 +50,19 @@ function SongDetails() {
                 )
             }
             <div className='edit-song-container'>
-                <div className='edit-song-image-container'>
-                    <img className='edit-song-image'
-                        src={song.imageUrl}
-                        onClick={() => {
-                                console.log(songSRC);
-                                setSongSRC(song.url);
-                            }
-                        }
-                    />
+                <div className='edit-song-image-container'
+                    onMouseEnter={() => {setPlayOpacity(1)}}
+                    onMouseLeave={() => {setPlayOpacity(0)}}
 
+                >
+                    <img className='song-play-button'
+                        src='https://delamont-sound-cloud-bucket.s3.us-west-1.amazonaws.com/playbutton.png'
+                        style= {{ opacity: playOpacity }}
+                        onClick={() => { setSongSRC(song.url); }}
+                    ></img>
+                    <img className='edit-song-image'
+                        src={song.imageUrl}  
+                    />
                 </div>
                 <div className='edit-song-details'>
                     <h3 className='song-description-details'>{song.description}</h3>

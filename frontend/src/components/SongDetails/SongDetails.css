@@ -50,10 +50,32 @@
 }
 
 .edit-song-image-container{
+    display: block;
+    position: relative;
     height: 80%;
     width: 80%;
     padding-bottom: 5%;
 }
+
+.song-play-button {
+    height: 33%;
+    width: 33%;
+    position: absolute;
+    top: 25%;
+    left: 33%;
+    /* display: none; */
+    /* opacity: 0; */
+    z-index: 2;
+    /* min-width: 64px; */
+}
+
+
+.edit-song-image-container .song-play-button:hover {
+    /* opacity: 1;
+    display: block; */
+    cursor: pointer;
+}
+
 
 .edit-song-image{
     height: 100%;
