@@ -59,14 +59,20 @@
 
 .song-play-button {
     height: 33%;
-    width: 33%;
+    /* width: 33%; */
     position: absolute;
-    top: 25%;
-    left: 33%;
+    top: 29%;
+    left: 39%;
+    /* top: 30%;
+    left: 36%; */
     /* display: none; */
     /* opacity: 0; */
     z-index: 2;
     /* min-width: 64px; */
+}
+
+.song-play-button:active {
+    transform: scale(0.95)
 }
 
 
@@ -78,8 +84,10 @@
 
 
 .edit-song-image{
-    height: 100%;
-    width: 100%;
+    /* height: 100%;
+    width: 100%; */
+    height: 400px;
+    width: 400px;
     min-width: 64px;
 }
 
